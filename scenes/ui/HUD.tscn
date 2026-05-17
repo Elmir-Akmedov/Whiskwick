@@ -1,0 +1,186 @@
+[gd_scene load_steps=2 format=3 uid="uid://whiskwick_hud"]
+
+[ext_resource type="Script" path="res://scripts/ui/HUD.gd" id="1_hud_script"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hud_script")
+
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopBar" type="PanelContainer" parent="Root"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 74.0
+mouse_filter = 1
+
+[node name="TopMargin" type="MarginContainer" parent="Root/TopBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="StatsGrid" type="GridContainer" parent="Root/TopBar/TopMargin"]
+layout_mode = 2
+columns = 6
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 4
+
+[node name="ClockLabel" type="Label" parent="Root/TopBar/TopMargin/StatsGrid"]
+custom_minimum_size = Vector2(150, 24)
+layout_mode = 2
+text = "Clock: 07:00"
+
+[node name="MoneyLabel" type="Label" parent="Root/TopBar/TopMargin/StatsGrid"]
+custom_minimum_size = Vector2(150, 24)
+layout_mode = 2
+text = "Money: $120"
+
+[node name="PhaseLabel" type="Label" parent="Root/TopBar/TopMargin/StatsGrid"]
+custom_minimum_size = Vector2(210, 24)
+layout_mode = 2
+text = "Phase: Morning Prep"
+
+[node name="StaminaLabel" type="Label" parent="Root/TopBar/TopMargin/StatsGrid"]
+custom_minimum_size = Vector2(135, 24)
+layout_mode = 2
+text = "Stamina: 100"
+
+[node name="OrderCountLabel" type="Label" parent="Root/TopBar/TopMargin/StatsGrid"]
+custom_minimum_size = Vector2(160, 24)
+layout_mode = 2
+text = "Active Orders: 0"
+
+[node name="StockLabel" type="Label" parent="Root/TopBar/TopMargin/StatsGrid"]
+custom_minimum_size = Vector2(140, 24)
+layout_mode = 2
+text = "Cupcakes: 0"
+
+[node name="ActionPanel" type="PanelContainer" parent="Root"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -260.0
+offset_top = 86.0
+offset_bottom = 438.0
+mouse_filter = 1
+
+[node name="ActionMargin" type="MarginContainer" parent="Root/ActionPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ActionStack" type="VBoxContainer" parent="Root/ActionPanel/ActionMargin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ActionTitle" type="Label" parent="Root/ActionPanel/ActionMargin/ActionStack"]
+layout_mode = 2
+text = "First Day Controls"
+horizontal_alignment = 1
+
+[node name="BuyStarterButton" type="Button" parent="Root/ActionPanel/ActionMargin/ActionStack"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Buy Starter Ingredients"
+
+[node name="CookCupcakesButton" type="Button" parent="Root/ActionPanel/ActionMargin/ActionStack"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Cook Cupcakes"
+
+[node name="CompleteOrderButton" type="Button" parent="Root/ActionPanel/ActionMargin/ActionStack"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Complete First Order"
+
+[node name="ControlRow" type="HBoxContainer" parent="Root/ActionPanel/ActionMargin/ActionStack"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PauseOrdersButton" type="Button" parent="Root/ActionPanel/ActionMargin/ActionStack/ControlRow"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pause Orders"
+
+[node name="SkipTimeButton" type="Button" parent="Root/ActionPanel/ActionMargin/ActionStack/ControlRow"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Skip Time"
+
+[node name="BuildRow" type="HBoxContainer" parent="Root/ActionPanel/ActionMargin/ActionStack"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PlaceTableButton" type="Button" parent="Root/ActionPanel/ActionMargin/ActionStack/BuildRow"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Place Table"
+
+[node name="PlaceOvenButton" type="Button" parent="Root/ActionPanel/ActionMargin/ActionStack/BuildRow"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Place Oven"
+
+[node name="PlaceRackButton" type="Button" parent="Root/ActionPanel/ActionMargin/ActionStack/BuildRow"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Place Rack"
+
+[node name="RotateButton" type="Button" parent="Root/ActionPanel/ActionMargin/ActionStack/BuildRow"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rotate"
+
+[node name="BottomPanel" type="PanelContainer" parent="Root"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_top = -126.0
+mouse_filter = 2
+
+[node name="LogMargin" type="MarginContainer" parent="Root/BottomPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+mouse_filter = 2
+
+[node name="LogStack" type="VBoxContainer" parent="Root/BottomPanel/LogMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LogTitle" type="Label" parent="Root/BottomPanel/LogMargin/LogStack"]
+layout_mode = 2
+text = "Action Log"
+mouse_filter = 2
+
+[node name="ActionLog" type="RichTextLabel" parent="Root/BottomPanel/LogMargin/LogStack"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+bbcode_enabled = true
+text = "Welcome to Whiskwick."

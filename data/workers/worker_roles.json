@@ -1,0 +1,57 @@
+[
+  {
+    "id": "cashier",
+    "name": "Cashier",
+    "primary_room": "sales_room",
+    "task_tags": ["take_order", "accept_payment", "serve_display_case", "manage_queue"],
+    "preferred_placeable_tags": ["service_counter", "customer_facing"],
+    "stamina_costs": {"easy_task": 1, "normal_task": 2, "rush_task": 3},
+    "leveling_stats": ["service_speed", "patience_recovery", "upsell_chance"],
+    "starter_behavior": "Stay near a service counter and resolve customer payment/order tasks before restocking tasks.",
+    "notes": "Cashiers keep sales moving. They should not leave the sales room unless no customer tasks exist."
+  },
+  {
+    "id": "baker",
+    "name": "Baker",
+    "primary_room": "kitchen",
+    "task_tags": ["prep_recipe", "cook_recipe", "assemble_recipe", "quality_check"],
+    "preferred_placeable_tags": ["worker_station", "work_surface", "heat_source"],
+    "stamina_costs": {"easy_task": 1, "normal_task": 2, "rush_task": 4},
+    "leveling_stats": ["cook_speed", "quality_bonus", "burn_resistance"],
+    "starter_behavior": "Prioritize known recipes on the menu, then refill prep stock for high-demand recipes.",
+    "notes": "Bakers are recipe-gated by known_recipes and station access."
+  },
+  {
+    "id": "runner",
+    "name": "Runner",
+    "primary_room": "warehouse",
+    "task_tags": ["move_raw_stock", "move_prep_stock", "move_finished_stock", "clear_delivery_intake"],
+    "preferred_placeable_tags": ["storage", "tablet_delivery_target", "short_term_storage"],
+    "stamina_costs": {"easy_task": 1, "normal_task": 2, "rush_task": 3},
+    "leveling_stats": ["carry_capacity", "move_speed", "route_efficiency"],
+    "starter_behavior": "Move tablet deliveries from warehouse intake to useful storage, then supply kitchen stations.",
+    "notes": "Runners make the warehouse matter without forcing the player to micromanage every crate."
+  },
+  {
+    "id": "cleaner",
+    "name": "Cleaner",
+    "primary_room": "sales_room",
+    "task_tags": ["clean_table", "clean_spill", "empty_bin", "restore_comfort"],
+    "preferred_placeable_tags": ["seating", "utility_shelf", "decor"],
+    "stamina_costs": {"easy_task": 1, "normal_task": 2, "rush_task": 3},
+    "leveling_stats": ["clean_speed", "comfort_bonus", "mess_prevention"],
+    "starter_behavior": "Fix mess that affects customer patience first, then maintain kitchen utility points.",
+    "notes": "Cleaners create a soft pressure system in busy layouts."
+  },
+  {
+    "id": "manager",
+    "name": "Manager",
+    "primary_room": "sales_room",
+    "task_tags": ["forecast_demand", "schedule_worker", "adjust_menu", "boost_room"],
+    "preferred_placeable_tags": ["service_counter", "decor"],
+    "stamina_costs": {"easy_task": 1, "normal_task": 2, "rush_task": 2},
+    "leveling_stats": ["forecast_accuracy", "team_stamina_bonus", "rush_control"],
+    "starter_behavior": "Provide passive forecast and scheduling bonuses instead of occupying a production station.",
+    "notes": "Managers are later-game pressure relief for planning and demand spikes."
+  }
+]

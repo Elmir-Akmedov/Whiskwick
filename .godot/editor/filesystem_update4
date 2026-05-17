@@ -1,0 +1,3 @@
+res://scripts/Main.gd
+res://scripts/systems/GridPlacementService.gd
+res://scenes/Main.tscn

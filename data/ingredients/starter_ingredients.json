@@ -1,0 +1,12 @@
+[
+  {"id": "flour", "name": "Flour", "base_price": 2, "layer": "raw"},
+  {"id": "egg", "name": "Egg", "base_price": 3, "layer": "raw"},
+  {"id": "sugar", "name": "Sugar", "base_price": 2, "layer": "raw"},
+  {"id": "milk", "name": "Milk", "base_price": 3, "layer": "raw"},
+  {"id": "cheese", "name": "Cheese", "base_price": 5, "layer": "raw"},
+  {"id": "tomato", "name": "Tomato", "base_price": 4, "layer": "raw"},
+  {"id": "batter", "name": "Batter", "base_price": 0, "layer": "prep"},
+  {"id": "dough", "name": "Dough", "base_price": 0, "layer": "prep"},
+  {"id": "sauce", "name": "Sauce", "base_price": 0, "layer": "prep"},
+  {"id": "cream", "name": "Cream", "base_price": 0, "layer": "prep"}
+]

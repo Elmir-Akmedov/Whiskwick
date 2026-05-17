@@ -1,0 +1,60 @@
+[
+  {
+    "id": "sales_room",
+    "name": "Sales Room",
+    "purpose": "Customer-facing ordering, browsing, payment, seating, and pickup.",
+    "starter_size": {"width": 8, "height": 6},
+    "min_size": {"width": 5, "height": 4},
+    "max_size": {"width": 16, "height": 12},
+    "grid": {"cell_size_pixels": 32, "allows_rotation": true, "requires_walkable_path": true},
+    "allowed_placeable_tags": ["customer_facing", "decor", "seating", "service_counter", "finished_storage"],
+    "blocked_placeable_tags": ["heat_source", "warehouse_intake"],
+    "entry_points": ["front_door", "kitchen_pass"],
+    "expansion": {"base_cost": 250, "cost_per_tile": 18, "unlock_level": 1},
+    "comfort_rules": {
+      "minimum_walkway_width_tiles": 1,
+      "customer_queue_tiles": 4,
+      "decor_patience_bonus_cap": 0.15
+    },
+    "notes": "The first room players read visually. Keep service routes short and customer paths uncluttered."
+  },
+  {
+    "id": "kitchen",
+    "name": "Kitchen",
+    "purpose": "Food preparation, cooking, assembly, and short-term working stock.",
+    "starter_size": {"width": 7, "height": 6},
+    "min_size": {"width": 5, "height": 4},
+    "max_size": {"width": 18, "height": 14},
+    "grid": {"cell_size_pixels": 32, "allows_rotation": true, "requires_walkable_path": true},
+    "allowed_placeable_tags": ["worker_station", "work_surface", "heat_source", "cold_storage", "short_term_storage"],
+    "blocked_placeable_tags": ["customer_seating", "warehouse_intake"],
+    "entry_points": ["sales_pass", "warehouse_door"],
+    "expansion": {"base_cost": 300, "cost_per_tile": 22, "unlock_level": 1},
+    "workflow_rules": {
+      "preferred_station_gap_tiles": 1,
+      "max_worker_station_distance_to_storage_tiles": 8,
+      "heat_source_clearance_tiles": 1
+    },
+    "notes": "Designed around readable top-down work lanes from storage to prep to cook to service."
+  },
+  {
+    "id": "warehouse",
+    "name": "Warehouse",
+    "purpose": "Tablet deliveries, bulk raw ingredient storage, and utility item storage.",
+    "starter_size": {"width": 6, "height": 5},
+    "min_size": {"width": 4, "height": 4},
+    "max_size": {"width": 16, "height": 12},
+    "grid": {"cell_size_pixels": 32, "allows_rotation": true, "requires_walkable_path": true},
+    "allowed_placeable_tags": ["storage", "cold_storage", "warehouse_intake", "tablet_delivery_target", "utility"],
+    "blocked_placeable_tags": ["customer_facing", "heat_source", "customer_seating"],
+    "entry_points": ["delivery_door", "kitchen_door"],
+    "expansion": {"base_cost": 180, "cost_per_tile": 14, "unlock_level": 1},
+    "delivery_rules": {
+      "tablet_orders_land_here": true,
+      "delivery_window_minutes": 30,
+      "intake_clearance_tiles": 2,
+      "overflow_policy": "queue_until_storage_space_available"
+    },
+    "notes": "Ingredient orders never appear directly in the kitchen; runners or the player move stock forward."
+  }
+]

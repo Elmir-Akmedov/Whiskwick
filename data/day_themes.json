@@ -1,0 +1,26 @@
+[
+  {
+    "id": "school_morning",
+    "name": "School Festival Morning",
+    "high_demand": ["cupcake_batch"],
+    "medium_demand": ["omelet"],
+    "low_demand": ["pizza_slices"],
+    "note": "Kids want cheap sweet snacks. Teachers may ask for breakfast food."
+  },
+  {
+    "id": "rainy_breakfast",
+    "name": "Rainy Breakfast Rush",
+    "high_demand": ["omelet"],
+    "medium_demand": ["cupcake_batch"],
+    "low_demand": ["pizza_slices"],
+    "note": "Fewer walk-ins, but warm food sells better."
+  },
+  {
+    "id": "office_lunch",
+    "name": "Office Lunch Rush",
+    "high_demand": ["pizza_slices"],
+    "medium_demand": ["cupcake_batch"],
+    "low_demand": ["omelet"],
+    "note": "Customers arrive in waves and value fast service."
+  }
+]

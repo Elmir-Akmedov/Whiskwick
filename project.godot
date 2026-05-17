@@ -1,0 +1,50 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Whiskwick: Cozy Kitchen"
+run/main_scene="res://scenes/Main.tscn"
+config/features=PackedStringArray("4.6", "Mobile")
+config/icon="res://assets/art/icon_placeholder.svg"
+
+[autoload]
+
+GameState="*res://scripts/autoload/GameState.gd"
+DataLibrary="*res://scripts/autoload/DataLibrary.gd"
+TimeService="*res://scripts/autoload/TimeService.gd"
+InventoryService="*res://scripts/autoload/InventoryService.gd"
+OrderService="*res://scripts/autoload/OrderService.gd"
+WorkerService="*res://scripts/autoload/WorkerService.gd"
+CapacityService="*res://scripts/autoload/CapacityService.gd"
+PlacementService="*res://scripts/systems/GridPlacementService.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[input]
+
+tap={
+"deadzone": 0.5,
+"events": []
+}
+pause_new_orders={
+"deadzone": 0.5,
+"events": []
+}
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"

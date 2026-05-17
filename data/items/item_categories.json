@@ -1,0 +1,57 @@
+[
+  {
+    "id": "raw_ingredient",
+    "name": "Raw Ingredient",
+    "inventory_layer": "raw",
+    "default_stack_limit": 99,
+    "storage_tags": ["dry_shelf", "cold_storage", "ingredient_crate"],
+    "spoilage_group": "ingredient",
+    "orderable_from_tablet": true,
+    "delivered_to_room": "warehouse",
+    "notes": "Purchased through the tablet and delivered to warehouse intake storage."
+  },
+  {
+    "id": "prep_stock",
+    "name": "Prep Stock",
+    "inventory_layer": "prep",
+    "default_stack_limit": 40,
+    "storage_tags": ["prep_counter", "cold_storage"],
+    "spoilage_group": "prepared",
+    "orderable_from_tablet": false,
+    "delivered_to_room": "",
+    "notes": "Made in the kitchen from raw ingredients before final cooking or assembly."
+  },
+  {
+    "id": "finished_food",
+    "name": "Finished Food",
+    "inventory_layer": "finished",
+    "default_stack_limit": 24,
+    "storage_tags": ["display_case", "holding_warmer", "service_counter"],
+    "spoilage_group": "finished",
+    "orderable_from_tablet": false,
+    "delivered_to_room": "",
+    "notes": "Ready to sell in the sales room or hold briefly near service."
+  },
+  {
+    "id": "cleaning_supply",
+    "name": "Cleaning Supply",
+    "inventory_layer": "utility",
+    "default_stack_limit": 20,
+    "storage_tags": ["utility_shelf"],
+    "spoilage_group": "none",
+    "orderable_from_tablet": true,
+    "delivered_to_room": "warehouse",
+    "notes": "Supports cleaner tasks and room upkeep once maintenance systems exist."
+  },
+  {
+    "id": "packaging",
+    "name": "Packaging",
+    "inventory_layer": "utility",
+    "default_stack_limit": 60,
+    "storage_tags": ["service_counter", "dry_shelf"],
+    "spoilage_group": "none",
+    "orderable_from_tablet": true,
+    "delivered_to_room": "warehouse",
+    "notes": "Future optional cost for takeout, rush orders, and premium presentation."
+  }
+]
