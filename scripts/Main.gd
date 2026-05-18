@@ -1,5 +1,7 @@
+@tool
 extends Node2D
 
+const GeneratedArt := preload("res://scripts/visual/GeneratedArtPresenter.gd")
 const CUPCAKE_RECIPE_ID := "cupcake_batch"
 const CUPCAKE_BATTER_RECIPE_ID := "cupcake_batter"
 const STARTER_INGREDIENTS := {
@@ -11,14 +13,14 @@ const STARTER_INGREDIENTS := {
 const BUY_STARTER_STAMINA_COST := 4
 const COOK_STAMINA_COST := 12
 const ROOM_ORIGINS := {
-	"sales_room": Vector2i(1, 1),
-	"kitchen": Vector2i(7, 1),
-	"warehouse": Vector2i(15, 1)
+	"sales_room": Vector2i(1, 2),
+	"kitchen": Vector2i(15, 2),
+	"warehouse": Vector2i(30, 2)
 }
 const ROOM_SIZES := {
-	"sales_room": Vector2i(7, 9),
-	"kitchen": Vector2i(7, 9),
-	"warehouse": Vector2i(4, 9)
+	"sales_room": Vector2i(14, 19),
+	"kitchen": Vector2i(15, 19),
+	"warehouse": Vector2i(9, 19)
 }
 const BUILD_PRESETS := {
 	"small_table_two_seat": {"room": "sales_room", "color": Color(0.27, 0.45, 0.32, 0.9)},
@@ -40,8 +42,14 @@ var can_place_hovered: bool = false
 var placed_interactables: Dictionary = {}
 var active_interaction_id: String = ""
 var table_dirty_state: Dictionary = {}
+var art_floor_layer: Node2D = null
+var art_wall_layer: Node2D = null
+var art_actor_layer: Node2D = null
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		_apply_generated_art()
+		return
 	_attach_scene_switcher()
 	_register_rooms()
 	TimeService.time_changed.connect(_on_time_changed)
@@ -57,9 +65,9 @@ func _ready() -> void:
 	hud.complete_first_order_requested.connect(_on_complete_first_order_requested)
 	hud.pause_orders_toggled.connect(_on_pause_orders_toggled)
 	hud.skip_time_requested.connect(_on_skip_time_requested)
-	hud.place_table_requested.connect(func() -> void: _select_build("small_table_two_seat"))
-	hud.place_oven_requested.connect(func() -> void: _select_build("oven_basic"))
-	hud.place_rack_requested.connect(func() -> void: _select_build("warehouse_shelf_basic"))
+	hud.place_table_requested.connect(func() -> void: _quick_place_build("small_table_two_seat"))
+	hud.place_oven_requested.connect(func() -> void: _quick_place_build("oven_basic"))
+	hud.place_rack_requested.connect(func() -> void: _quick_place_build("warehouse_shelf_basic"))
 	hud.rotate_placement_requested.connect(_rotate_selected_build)
 	$InteractionPopup/Margin/Stack/CleanButton.pressed.connect(_clean_active_table)
 	$InteractionPopup/Margin/Stack/CloseButton.pressed.connect(func() -> void: interaction_popup.visible = false)
@@ -67,8 +75,9 @@ func _ready() -> void:
 	InventoryService.reset()
 	TimeService.reset_day()
 	OrderService.reset_day()
+	_apply_generated_art()
 	_refresh_hud()
-	hud.log_line("07:00 - Morning prep begins.")
+	hud.log_line("07:00 - Morning prep begins. Generated art batch is visible in the shop.")
 
 func _attach_scene_switcher() -> void:
 	var switcher_scene := load("res://scripts/ui/SceneSwitcher.gd")
@@ -80,11 +89,15 @@ func _attach_scene_switcher() -> void:
 	add_child(switcher)
 
 func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
 	TimeService.tick(delta)
 	OrderService.tick(delta)
 	_update_hovered_placement()
 
 func _input(event: InputEvent) -> void:
+	if Engine.is_editor_hint():
+		return
 	if event is InputEventKey and event.pressed and event.keycode == KEY_E:
 		_interact_with_nearest()
 		get_viewport().set_input_as_handled()
@@ -203,6 +216,21 @@ func _select_build(build_id: String) -> void:
 	var label := _display_name_for_build(build_id)
 	hud.log_line("%s - Selected %s. Move cursor over the correct room, left-click to place." % [_clock_stamp(), label])
 
+func _quick_place_build(build_id: String) -> void:
+	var room_id := _preferred_room_for_build(build_id)
+	if room_id.is_empty():
+		hud.log_line("%s - No valid room found for %s." % [_clock_stamp(), _display_name_for_build(build_id)])
+		return
+	var cell_result := _find_first_empty_cell(room_id, _size_for_build(build_id), 0)
+	if not bool(cell_result.get("ok", false)):
+		hud.log_line("%s - No open %s tile for %s." % [_clock_stamp(), room_id, _display_name_for_build(build_id)])
+		return
+	var result := _place_build(room_id, build_id, cell_result.get("cell", Vector2i.ZERO), 0)
+	if bool(result.get("ok", false)):
+		selected_build_id = ""
+		preview_rect.visible = false
+	hud.log_line("%s - %s" % [_clock_stamp(), result.get("message", "Placement failed.")])
+
 func _rotate_selected_build() -> void:
 	if selected_build_id.is_empty():
 		hud.log_line("%s - Select a build item first." % _clock_stamp())
@@ -279,6 +307,41 @@ func _place_build(room_id: String, build_id: String, cell: Vector2i, rotation: i
 	_render_placed_object(room_id, build_id, cell, size, rotation, instance_id)
 	return result
 
+func _preferred_room_for_build(build_id: String) -> String:
+	if BUILD_PRESETS.has(build_id):
+		return str(BUILD_PRESETS[build_id].get("room", ""))
+	var placeable := DataLibrary.get_placeable(build_id)
+	if not placeable.is_empty():
+		var allowed_rooms: Array = placeable.get("allowed_rooms", [])
+		if not allowed_rooms.is_empty():
+			return str(allowed_rooms[0])
+	var machine := DataLibrary.get_machine(build_id)
+	if not machine.is_empty():
+		var allowed_rooms: Array = machine.get("allowed_rooms", [])
+		if not allowed_rooms.is_empty():
+			return str(allowed_rooms[0])
+	return ""
+
+func _find_first_empty_cell(room_id: String, size: Vector2i, rotation: int) -> Dictionary:
+	if not ROOM_SIZES.has(room_id):
+		return {"ok": false, "message": "Unknown room: %s." % room_id}
+	var room_size: Vector2i = ROOM_SIZES[room_id]
+	var footprint := _rotated_size(size, rotation)
+	var start_y: int = 2 if room_size.y > 4 else 0
+	for y in range(start_y, room_size.y - footprint.y + 1):
+		for x in range(1, room_size.x - footprint.x + 1):
+			var cell := Vector2i(x, y)
+			var check := PlacementService.can_place(room_id, "quick_place_probe", cell, size, rotation)
+			if bool(check.get("ok", false)):
+				return {"ok": true, "cell": cell}
+	for y in range(0, room_size.y - footprint.y + 1):
+		for x in range(0, room_size.x - footprint.x + 1):
+			var cell := Vector2i(x, y)
+			var check := PlacementService.can_place(room_id, "quick_place_probe", cell, size, rotation)
+			if bool(check.get("ok", false)):
+				return {"ok": true, "cell": cell}
+	return {"ok": false, "message": "No free cell in %s." % room_id}
+
 func _render_placed_object(room_id: String, build_id: String, cell: Vector2i, size: Vector2i, rotation: int, instance_id: String) -> void:
 	var footprint := _rotated_size(size, rotation)
 	var origin: Vector2i = ROOM_ORIGINS.get(room_id, Vector2i.ZERO)
@@ -302,14 +365,16 @@ func _render_placed_object(room_id: String, build_id: String, cell: Vector2i, si
 	}
 	if build_id == "small_table_two_seat":
 		table_dirty_state[instance_id] = {"plates": 2, "crumbs": true}
-	var label := Label.new()
-	label.text = _display_name_for_build(build_id)
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.size = rect.size
-	label.add_theme_font_size_override("font_size", 13)
-	label.add_theme_color_override("font_color", Color(0.95, 0.93, 0.86, 1.0))
-	rect.add_child(label)
+	var decorated := GeneratedArt.decorate_control(rect, _art_id_for_build(build_id), Vector2i(64, 64), _uses_animated_art(build_id))
+	if not decorated:
+		var label := Label.new()
+		label.text = _display_name_for_build(build_id)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.size = rect.size
+		label.add_theme_font_size_override("font_size", 13)
+		label.add_theme_color_override("font_color", Color(0.95, 0.93, 0.86, 1.0))
+		rect.add_child(label)
 
 func _update_preview() -> void:
 	if selected_build_id.is_empty():
@@ -429,3 +494,114 @@ func _clean_active_table() -> void:
 	table_dirty_state[active_interaction_id] = {"plates": 0, "crumbs": false}
 	hud.log_line("%s - Table cleaned." % _clock_stamp())
 	_open_interaction(active_interaction_id)
+
+func _apply_generated_art() -> void:
+	var world: Node2D = $World
+	art_floor_layer = _replace_art_layer(world, "GeneratedFloorLayer", 5)
+	for room_id in ROOM_SIZES:
+		GeneratedArt.add_room_floor(art_floor_layer, room_id, ROOM_ORIGINS[room_id], ROOM_SIZES[room_id])
+	_fade_room_backdrops()
+	GeneratedArt.add_floor_decal(art_floor_layer, Vector2i(4, 10), 5, "SalesQueueMarker")
+	GeneratedArt.add_floor_decal(art_floor_layer, Vector2i(36, 15), 7, "WarehouseDeliveryZone")
+	GeneratedArt.add_floor_decal(art_floor_layer, Vector2i(25, 14), 6, "OvenHeatClearance")
+
+	art_wall_layer = _replace_art_layer(world, "GeneratedWallLayer", 7)
+	_add_room_wall_art()
+	_decorate_existing_fixtures()
+	_add_demo_actor_art()
+
+func _replace_art_layer(world: Node2D, layer_name: String, target_index: int) -> Node2D:
+	var existing := world.get_node_or_null(layer_name)
+	if existing != null:
+		world.remove_child(existing)
+		existing.free()
+	var layer := Node2D.new()
+	layer.name = layer_name
+	world.add_child(layer)
+	world.move_child(layer, min(target_index, world.get_child_count() - 1))
+	return layer
+
+func _fade_room_backdrops() -> void:
+	for path in ["World/SalesRoom", "World/Kitchen", "World/Warehouse"]:
+		var rect: ColorRect = get_node_or_null(path)
+		if rect == null:
+			push_error("Missing room backdrop for generated floor: %s." % path)
+			continue
+		rect.color = Color(rect.color.r, rect.color.g, rect.color.b, 0.0)
+
+func _add_room_wall_art() -> void:
+	var modules := [
+		{"cell": Vector2i(2, 2), "row": 0, "col": 0, "name": "SalesWallStraight"},
+		{"cell": Vector2i(6, 2), "row": 0, "col": 4, "name": "SalesWallShelves"},
+		{"cell": Vector2i(12, 2), "row": 0, "col": 7, "name": "SalesPassCounter"},
+		{"cell": Vector2i(16, 2), "row": 1, "col": 0, "name": "KitchenWallStraight"},
+		{"cell": Vector2i(22, 2), "row": 1, "col": 6, "name": "KitchenWallHooks"},
+		{"cell": Vector2i(28, 2), "row": 1, "col": 3, "name": "KitchenDoor"},
+		{"cell": Vector2i(31, 2), "row": 2, "col": 0, "name": "WarehouseWallStraight"},
+		{"cell": Vector2i(34, 2), "row": 2, "col": 5, "name": "WarehouseBoard"},
+		{"cell": Vector2i(37, 2), "row": 2, "col": 3, "name": "WarehouseDoor"}
+	]
+	for module in modules:
+		GeneratedArt.add_wall_module(
+			art_wall_layer,
+			module.get("cell", Vector2i.ZERO),
+			int(module.get("row", 0)),
+			int(module.get("col", 0)),
+			str(module.get("name", "WallModule"))
+		)
+
+func _decorate_existing_fixtures() -> void:
+	var fixtures := {
+		"World/SalesRoomFixtures/CashierStand": {"id": "service_counter_basic", "animated": false},
+		"World/SalesRoomFixtures/DisplayShelf": {"id": "display_case_basic", "animated": true},
+		"World/SalesRoomFixtures/TableA": {"id": "small_table_two_seat", "animated": false},
+		"World/SalesRoomFixtures/TableB": {"id": "small_table_two_seat", "animated": false},
+		"World/KitchenFixtures/PrepCounter": {"id": "prep_counter_basic", "animated": true},
+		"World/KitchenFixtures/Oven": {"id": "oven_basic", "animated": true},
+		"World/KitchenFixtures/MixerMachine": {"id": "mixer", "animated": false},
+		"World/KitchenFixtures/PackingMachine": {"id": "packing_station", "animated": false},
+		"World/WarehouseFixtures/RackA": {"id": "warehouse_shelf_basic", "animated": false},
+		"World/WarehouseFixtures/RackB": {"id": "warehouse_shelf_basic", "animated": false},
+		"World/WarehouseFixtures/ReceivingZone": {"id": "tablet_station", "animated": false}
+	}
+	for path in fixtures:
+		var rect: ColorRect = get_node_or_null(path)
+		if rect == null:
+			push_error("Missing fixture for generated art: %s." % path)
+			continue
+		var data: Dictionary = fixtures[path]
+		GeneratedArt.decorate_control(rect, str(data.get("id", "")), Vector2i(64, 64), bool(data.get("animated", false)))
+	_hide_graybox_fixture_labels()
+
+func _hide_graybox_fixture_labels() -> void:
+	for label in get_tree().get_nodes_in_group("generated_art_hide"):
+		if label is CanvasItem:
+			(label as CanvasItem).visible = false
+	for node in $World.find_children("*Label", "Label", true, false):
+		var label := node as Label
+		if label != null and label.name != "SalesRoomLabel" and label.name != "KitchenLabel" and label.name != "WarehouseLabel":
+			label.visible = false
+
+func _add_demo_actor_art() -> void:
+	art_actor_layer = _replace_art_layer($World, "GeneratedActorLayer", $World.get_child_count())
+	GeneratedArt.add_worker(art_actor_layer, "baker", Vector2(656, 572), "baker_task")
+	GeneratedArt.add_worker(art_actor_layer, "cashier", Vector2(260, 292), "cashier_task")
+	GeneratedArt.add_worker(art_actor_layer, "runner", Vector2(1060, 424), "runner_task")
+	GeneratedArt.add_worker(art_actor_layer, "cleaner", Vector2(370, 520), "cleaner_task")
+	var customer := Node2D.new()
+	customer.name = "GeneratedCustomerTest"
+	customer.position = Vector2(140, 344)
+	art_actor_layer.add_child(customer)
+	GeneratedArt.decorate_customer(customer)
+
+func _art_id_for_build(build_id: String) -> String:
+	if build_id == "small_table_two_seat":
+		return "small_table_two_seat"
+	if build_id == "warehouse_shelf_basic":
+		return "warehouse_shelf_basic"
+	if build_id == "oven_basic":
+		return "oven_basic"
+	return build_id
+
+func _uses_animated_art(build_id: String) -> bool:
+	return build_id == "oven_basic" or build_id == "prep_counter_basic" or build_id == "display_case_basic"

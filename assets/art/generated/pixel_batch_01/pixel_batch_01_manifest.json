@@ -1,0 +1,69 @@
+﻿{
+    "batch":  "pixel_batch_01",
+    "style":  "transparent cozy top-down pixel art, fixed-frame Godot sprite sheets",
+    "assets":  [
+                   {
+                       "file":  "player_prep_carry_6x2.png",
+                       "frame_size":  "32x48",
+                       "grid":  "6x2",
+                       "animations":  [
+                                          "prep row 0",
+                                          "carry row 1"
+                                      ]
+                   },
+                   {
+                       "file":  "oven_basic_bake_cycle_6x1.png",
+                       "frame_size":  "64x64",
+                       "grid":  "6x1",
+                       "animations":  [
+                                          "bake_heat_loop"
+                                      ]
+                   },
+                   {
+                       "file":  "prep_counter_work_cycle_6x1.png",
+                       "frame_size":  "64x64",
+                       "grid":  "6x1",
+                       "animations":  [
+                                          "prep_work_loop"
+                                      ]
+                   },
+                   {
+                       "file":  "display_case_stock_states_4x1.png",
+                       "frame_size":  "64x64",
+                       "grid":  "4x1",
+                       "animations":  [
+                                          "empty",
+                                          "low",
+                                          "medium",
+                                          "full"
+                                      ]
+                   },
+                   {
+                       "file":  "dirty_table_clean_loop_6x1.png",
+                       "frame_size":  "64x64",
+                       "grid":  "6x1",
+                       "animations":  [
+                                          "wipe_clean_loop"
+                                      ]
+                   },
+                   {
+                       "file":  "ingredient_crate_stock_states_4x1.png",
+                       "frame_size":  "64x64",
+                       "grid":  "4x1",
+                       "animations":  [
+                                          "empty",
+                                          "low",
+                                          "medium",
+                                          "full"
+                                      ]
+                   },
+                   {
+                       "file":  "starter_food_icons_8x2.png",
+                       "frame_size":  "32x32",
+                       "grid":  "8x2",
+                       "animations":  [
+                                          "food item icons and duplicate highlight row"
+                                      ]
+                   }
+               ]
+}

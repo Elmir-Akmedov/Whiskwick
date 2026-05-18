@@ -1,6 +1,8 @@
 extends Node2D
 class_name Customer
 
+const GeneratedArt := preload("res://scripts/visual/GeneratedArtPresenter.gd")
+
 signal customer_served(customer: Customer)
 signal customer_left_unhappy(customer: Customer)
 
@@ -19,6 +21,7 @@ var _left: bool = false
 var _max_patience: float = 30.0
 
 func _ready() -> void:
+	GeneratedArt.decorate_customer(self)
 	if customer_name.is_empty():
 		customer_name = COZY_NAMES[randi() % COZY_NAMES.size()]
 	_update_label()

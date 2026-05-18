@@ -1,0 +1,96 @@
+﻿{
+    "batch":  "environment_batch_03",
+    "style":  "Stardew-like cozy top-down 2D pixel art, 32 px tile grid, room-specific materials",
+    "assets":  [
+                   {
+                       "file":  "room_floor_tiles_8x4.png",
+                       "frame_size":  "32x32",
+                       "grid":  "8x4",
+                       "hframes":  8,
+                       "vframes":  4,
+                       "rows":  [
+                                    "sales_room",
+                                    "kitchen",
+                                    "warehouse",
+                                    "transitions_and_markers"
+                                ]
+                   },
+                   {
+                       "file":  "room_wall_modules_8x3.png",
+                       "frame_size":  "64x64",
+                       "grid":  "8x3",
+                       "hframes":  8,
+                       "vframes":  3,
+                       "rows":  [
+                                    "sales_room",
+                                    "kitchen",
+                                    "warehouse"
+                                ],
+                       "columns":  [
+                                       "straight",
+                                       "post",
+                                       "corner",
+                                       "door",
+                                       "shelves",
+                                       "board",
+                                       "hooks",
+                                       "pass_counter"
+                                   ]
+                   },
+                   {
+                       "file":  "starter_machines_placeables_4x4.png",
+                       "frame_size":  "64x64",
+                       "grid":  "4x4",
+                       "hframes":  4,
+                       "vframes":  4,
+                       "cells":  [
+                                     "oven_basic",
+                                     "prep_counter",
+                                     "stovetop",
+                                     "display_case",
+                                     "warehouse_rack",
+                                     "cold_storage",
+                                     "mixer",
+                                     "drink_station",
+                                     "cashier_stand",
+                                     "table_two",
+                                     "sink",
+                                     "trash_bin",
+                                     "tablet_station",
+                                     "packing_station",
+                                     "plant",
+                                     "plant"
+                                 ]
+                   },
+                   {
+                       "file":  "room_concept_thumbnails_2x2.png",
+                       "frame_size":  "192x128",
+                       "grid":  "2x2",
+                       "hframes":  2,
+                       "vframes":  2,
+                       "cells":  [
+                                     "sales_room",
+                                     "kitchen",
+                                     "warehouse",
+                                     "expansion_preview"
+                                 ]
+                   },
+                   {
+                       "file":  "floor_decals_markers_8x1.png",
+                       "frame_size":  "32x32",
+                       "grid":  "8x1",
+                       "hframes":  8,
+                       "vframes":  1,
+                       "cells":  [
+                                     "chalk_line",
+                                     "tape_strip",
+                                     "spare_tile",
+                                     "flour_dust",
+                                     "scuff_marks",
+                                     "queue_marker",
+                                     "heat_clearance",
+                                     "delivery_zone"
+                                 ]
+                   }
+               ]
+}

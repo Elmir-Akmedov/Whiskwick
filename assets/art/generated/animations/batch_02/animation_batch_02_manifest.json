@@ -1,0 +1,184 @@
+﻿{
+    "batch":  "animation_batch_02",
+    "style":  "cozy top-down RPG pixel animation, transparent PNG, fixed Godot slicing cells, no frame separators",
+    "direction_order":  [
+                            "south",
+                            "east",
+                            "north",
+                            "west"
+                        ],
+    "assets":  [
+                   {
+                       "file":  "player_walk_4dir_4f_4x4.png",
+                       "frame_size":  "48x48",
+                       "grid":  "4x4",
+                       "hframes":  4,
+                       "vframes":  4,
+                       "rows":  [
+                                    "south",
+                                    "east",
+                                    "north",
+                                    "west"
+                                ],
+                       "columns":  [
+                                       "step_0",
+                                       "step_1",
+                                       "step_2",
+                                       "step_3"
+                                   ]
+                   },
+                   {
+                       "file":  "worker_task_loops_6x4.png",
+                       "frame_size":  "48x48",
+                       "grid":  "6x4",
+                       "hframes":  6,
+                       "vframes":  4,
+                       "rows":  [
+                                    "baker",
+                                    "cashier",
+                                    "runner",
+                                    "cleaner"
+                                ],
+                       "columns":  [
+                                       "idle",
+                                       "action_a",
+                                       "action_b",
+                                       "serve_or_carry",
+                                       "work_loop",
+                                       "tired"
+                                   ]
+                   },
+                   {
+                       "file":  "runner_carry_walk_4dir_4f_4x4.png",
+                       "frame_size":  "48x48",
+                       "grid":  "4x4",
+                       "hframes":  4,
+                       "vframes":  4,
+                       "rows":  [
+                                    "south",
+                                    "east",
+                                    "north",
+                                    "west"
+                                ],
+                       "columns":  [
+                                       "carry_step_0",
+                                       "carry_step_1",
+                                       "carry_step_2",
+                                       "carry_step_3"
+                                   ]
+                   },
+                   {
+                       "file":  "customer_reactions_8x2.png",
+                       "frame_size":  "48x48",
+                       "grid":  "8x2",
+                       "hframes":  8,
+                       "vframes":  2,
+                       "rows":  [
+                                    "morning_regular",
+                                    "sweet_tooth_kid"
+                                ],
+                       "columns":  [
+                                       "wait",
+                                       "browse",
+                                       "order",
+                                       "pay",
+                                       "happy",
+                                       "impatient",
+                                       "leave",
+                                       "failed"
+                                   ]
+                   },
+                   {
+                       "file":  "carry_item_overlays_8x1.png",
+                       "frame_size":  "32x32",
+                       "grid":  "8x1",
+                       "hframes":  8,
+                       "vframes":  1,
+                       "columns":  [
+                                       "empty_crate",
+                                       "full_crate",
+                                       "mixing_bowl",
+                                       "tray",
+                                       "boxed_order",
+                                       "bread_or_pastry",
+                                       "drink",
+                                       "wrapped_bundle"
+                                   ]
+                   },
+                   {
+                       "file":  "player_use_tablet_6x1.png",
+                       "frame_size":  "48x48",
+                       "grid":  "6x1",
+                       "hframes":  6,
+                       "vframes":  1,
+                       "columns":  [
+                                       "lift",
+                                       "tap_0",
+                                       "tap_1",
+                                       "confirm",
+                                       "lower",
+                                       "idle"
+                                   ]
+                   },
+                   {
+                       "file":  "baker_sprinkle_loop_6x1.png",
+                       "frame_size":  "48x48",
+                       "grid":  "6x1",
+                       "hframes":  6,
+                       "vframes":  1,
+                       "columns":  [
+                                       "ready",
+                                       "shake_0",
+                                       "shake_1",
+                                       "falling",
+                                       "finish",
+                                       "idle"
+                                   ]
+                   },
+                   {
+                       "file":  "cashier_payment_loop_6x1.png",
+                       "frame_size":  "48x48",
+                       "grid":  "6x1",
+                       "hframes":  6,
+                       "vframes":  1,
+                       "columns":  [
+                                       "wait",
+                                       "card_in",
+                                       "tap",
+                                       "receipt",
+                                       "bag",
+                                       "done"
+                                   ]
+                   },
+                   {
+                       "file":  "cleaner_mop_loop_6x1.png",
+                       "frame_size":  "48x48",
+                       "grid":  "6x1",
+                       "hframes":  6,
+                       "vframes":  1,
+                       "columns":  [
+                                       "left",
+                                       "mid_left",
+                                       "center",
+                                       "right",
+                                       "center_return",
+                                       "mid_left_return"
+                                   ]
+                   },
+                   {
+                       "file":  "customer_impatience_6x1.png",
+                       "frame_size":  "48x48",
+                       "grid":  "6x1",
+                       "hframes":  6,
+                       "vframes":  1,
+                       "columns":  [
+                                       "wait",
+                                       "tap_0",
+                                       "tap_1",
+                                       "look",
+                                       "warning",
+                                       "settle"
+                                   ]
+                   }
+               ]
+}
