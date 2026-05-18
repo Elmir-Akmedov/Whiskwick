@@ -42,6 +42,7 @@ var active_interaction_id: String = ""
 var table_dirty_state: Dictionary = {}
 
 func _ready() -> void:
+	_attach_scene_switcher()
 	_register_rooms()
 	TimeService.time_changed.connect(_on_time_changed)
 	TimeService.phase_changed.connect(_on_phase_changed)
@@ -68,6 +69,15 @@ func _ready() -> void:
 	OrderService.reset_day()
 	_refresh_hud()
 	hud.log_line("07:00 - Morning prep begins.")
+
+func _attach_scene_switcher() -> void:
+	var switcher_scene := load("res://scripts/ui/SceneSwitcher.gd")
+	if switcher_scene == null:
+		push_error("Missing SceneSwitcher script.")
+		return
+	var switcher := CanvasLayer.new()
+	switcher.set_script(switcher_scene)
+	add_child(switcher)
 
 func _process(delta: float) -> void:
 	TimeService.tick(delta)

@@ -1,0 +1,199 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/ShopFloor.gd" id="1_shopfloor"]
+
+[node name="ShopFloor" type="Node2D"]
+script = ExtResource("1_shopfloor")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 78.0
+
+[node name="Row" type="HBoxContainer" parent="UI/TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CoinsLabel" type="Label" parent="UI/TopBar/Row"]
+layout_mode = 2
+text = "Coins: 0"
+
+[node name="XPLabel" type="Label" parent="UI/TopBar/Row"]
+layout_mode = 2
+text = "XP: 0"
+
+[node name="ReputationLabel" type="Label" parent="UI/TopBar/Row"]
+layout_mode = 2
+text = "Rep: 0.0"
+
+[node name="DayLabel" type="Label" parent="UI/TopBar/Row"]
+layout_mode = 2
+text = "Day: 1"
+
+[node name="QueueArea" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 96.0
+offset_right = -24.0
+offset_bottom = -220.0
+
+[node name="QueueStack" type="VBoxContainer" parent="UI/QueueArea"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Slot1" type="PanelContainer" parent="UI/QueueArea/QueueStack"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="UI/QueueArea/QueueStack/Slot1"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Stack" type="VBoxContainer" parent="UI/QueueArea/QueueStack/Slot1/Margin"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="UI/QueueArea/QueueStack/Slot1/Margin/Stack"]
+layout_mode = 2
+text = "Empty"
+
+[node name="Order" type="Label" parent="UI/QueueArea/QueueStack/Slot1/Margin/Stack"]
+layout_mode = 2
+text = "Order: -"
+
+[node name="Patience" type="ProgressBar" parent="UI/QueueArea/QueueStack/Slot1/Margin/Stack"]
+layout_mode = 2
+max_value = 100.0
+
+[node name="Slot2" type="PanelContainer" parent="UI/QueueArea/QueueStack"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="UI/QueueArea/QueueStack/Slot2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Stack" type="VBoxContainer" parent="UI/QueueArea/QueueStack/Slot2/Margin"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="UI/QueueArea/QueueStack/Slot2/Margin/Stack"]
+layout_mode = 2
+text = "Empty"
+
+[node name="Order" type="Label" parent="UI/QueueArea/QueueStack/Slot2/Margin/Stack"]
+layout_mode = 2
+text = "Order: -"
+
+[node name="Patience" type="ProgressBar" parent="UI/QueueArea/QueueStack/Slot2/Margin/Stack"]
+layout_mode = 2
+max_value = 100.0
+
+[node name="Slot3" type="PanelContainer" parent="UI/QueueArea/QueueStack"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="UI/QueueArea/QueueStack/Slot3"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Stack" type="VBoxContainer" parent="UI/QueueArea/QueueStack/Slot3/Margin"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="UI/QueueArea/QueueStack/Slot3/Margin/Stack"]
+layout_mode = 2
+text = "Empty"
+
+[node name="Order" type="Label" parent="UI/QueueArea/QueueStack/Slot3/Margin/Stack"]
+layout_mode = 2
+text = "Order: -"
+
+[node name="Patience" type="ProgressBar" parent="UI/QueueArea/QueueStack/Slot3/Margin/Stack"]
+layout_mode = 2
+max_value = 100.0
+
+[node name="DishArea" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -190.0
+offset_right = -24.0
+offset_bottom = -56.0
+
+[node name="Margin" type="MarginContainer" parent="UI/DishArea"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Scroll" type="ScrollContainer" parent="UI/DishArea/Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="DishStack" type="VBoxContainer" parent="UI/DishArea/Margin/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="EndDayButton" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 9
+anchor_left = 1.0
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -50.0
+offset_right = -24.0
+offset_bottom = -12.0
+text = "End Day"
+
+[node name="OpenPopup" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -250.0
+offset_right = 120.0
+offset_bottom = -212.0
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 26
+text = "Shop is Open!"
+
+[node name="StatusLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = 34.0
+offset_right = -24.0
+offset_bottom = 64.0
+horizontal_alignment = 1
+text = "Status"

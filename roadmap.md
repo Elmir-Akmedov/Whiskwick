@@ -59,8 +59,9 @@ Whiskwick is a landscape top-down cozy food shop tycoon. The player begins with 
 24. Add player top-down movement prototype.
 25. Add tablet ordering concept: ingredients arrive in warehouse receiving zone.
 26. Add designer prompt pack for characters, machines, rooms, items, and UI icons.
-27. Replace graybox rectangles with first generated/hand-cleaned placeholder asset set.
-28. Add room expansion rules and visual expansion states.
+27. Add animation prompt pack for worker loops, customer loops, and gameplay FX sheets.
+28. Replace graybox rectangles with first generated/hand-cleaned placeholder asset set.
+29. Add room expansion rules and visual expansion states.
 
 ## First Playable Acceptance Criteria
 

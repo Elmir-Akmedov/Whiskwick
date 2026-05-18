@@ -25,6 +25,13 @@ OrderService="*res://scripts/autoload/OrderService.gd"
 WorkerService="*res://scripts/autoload/WorkerService.gd"
 CapacityService="*res://scripts/autoload/CapacityService.gd"
 PlacementService="*res://scripts/systems/GridPlacementService.gd"
+SaveManager="*res://scripts/autoload/SaveManager.gd"
+UIManager="*res://scripts/autoload/UIManager.gd"
+InventoryManager="*res://scripts/autoload/InventoryManager.gd"
+RecipeManager="*res://scripts/autoload/RecipeManager.gd"
+MenuManager="*res://scripts/autoload/MenuManager.gd"
+CustomerManager="*res://scripts/autoload/CustomerManager.gd"
+UpgradeManager="*res://scripts/autoload/UpgradeManager.gd"
 
 [display]
 

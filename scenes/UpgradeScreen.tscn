@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/UpgradeScreen.gd" id="1_upgrade"]
+
+[node name="UpgradeScreen" type="Node2D"]
+script = ExtResource("1_upgrade")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 74.0
+
+[node name="CoinsLabel" type="Label" parent="UI/TopBar"]
+layout_mode = 2
+text = "Coins: 0"
+
+[node name="ListPanel" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 86.0
+offset_right = -18.0
+offset_bottom = -90.0
+
+[node name="Margin" type="MarginContainer" parent="UI/ListPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Scroll" type="ScrollContainer" parent="UI/ListPanel/Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="List" type="VBoxContainer" parent="UI/ListPanel/Margin/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="StatusLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -82.0
+offset_right = -180.0
+offset_bottom = -38.0
+text = "Choose an upgrade."
+
+[node name="BackButton" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 9
+anchor_left = 1.0
+anchor_bottom = 1.0
+offset_left = -162.0
+offset_top = -82.0
+offset_right = -18.0
+offset_bottom = -38.0
+text = "Back"
