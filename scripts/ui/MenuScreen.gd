@@ -1,9 +1,14 @@
 extends Node2D
+# ─────────────────────────────────────────────────────────────────────────────
+# MenuScreen.gd  –  Phase 2 upgrade
+# Manage which recipes are active and their prices.
+# Shows unlocked + locked recipes in separate scrollable panels.
+# ─────────────────────────────────────────────────────────────────────────────
 
 @onready var unlocked_list: VBoxContainer = $UI/UnlockedPanel/Margin/Scroll/UnlockedList
-@onready var locked_list: VBoxContainer = $UI/LockedPanel/Margin/Scroll/LockedList
-@onready var status_label: Label = $UI/StatusLabel
-@onready var back_button: Button = $UI/BackButton
+@onready var locked_list:   VBoxContainer = $UI/LockedPanel/Margin/Scroll/LockedList
+@onready var status_label:  Label         = $UI/StatusLabel
+@onready var back_button:   Button        = $UI/BackButton
 
 func _ready() -> void:
 	_render()
@@ -11,19 +16,20 @@ func _ready() -> void:
 		get_tree().change_scene_to_file("res://scenes/Main.tscn")
 	)
 
+# ─────────────────────────────────────────────────────────────────────────────
+
 func _render() -> void:
 	for child in unlocked_list.get_children():
 		child.queue_free()
 	for child in locked_list.get_children():
 		child.queue_free()
 
-	var all_recipes: Array = RecipeManager.get_all_recipes()
 	var lock_idx: int = 0
-	for recipe in all_recipes:
+	for recipe in RecipeManager.get_all_recipes():
 		if typeof(recipe) != TYPE_DICTIONARY:
 			continue
 		var item: Dictionary = recipe
-		var name: String = str(item.get("name", "Unknown"))
+		var name: String  = str(item.get("name", "Unknown"))
 		var unlocked: bool = bool(item.get("unlocked", false))
 		if unlocked:
 			unlocked_list.add_child(_build_unlocked_card(name, item))
@@ -31,109 +37,133 @@ func _render() -> void:
 			lock_idx += 1
 			locked_list.add_child(_build_locked_card(name, 2 + lock_idx))
 
+# ─────────────────────────────────────────────────────────────────────────────
+# CARD BUILDERS
+# ─────────────────────────────────────────────────────────────────────────────
+
 func _build_unlocked_card(recipe_name: String, recipe: Dictionary) -> PanelContainer:
-	var panel: PanelContainer = PanelContainer.new()
+	var panel  := PanelContainer.new()
 	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var margin: MarginContainer = MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 8)
-	margin.add_theme_constant_override("margin_top", 6)
-	margin.add_theme_constant_override("margin_right", 8)
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left",   8)
+	margin.add_theme_constant_override("margin_top",    6)
+	margin.add_theme_constant_override("margin_right",  8)
 	margin.add_theme_constant_override("margin_bottom", 6)
 	panel.add_child(margin)
 
-	var stack: VBoxContainer = VBoxContainer.new()
+	var stack := VBoxContainer.new()
 	stack.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	stack.add_theme_constant_override("separation", 4)
 	margin.add_child(stack)
 
-	var title: Label = Label.new()
+	# Title
+	var title := Label.new()
 	title.text = recipe_name
-	title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	title.add_theme_font_size_override("font_size", 16)
 	stack.add_child(title)
 
+	# Ingredients
 	var ingredients: Dictionary = recipe.get("ingredients", {})
-	var ing_text: Array[String] = []
-	for ingredient_id in ingredients.keys():
-		ing_text.append("%s x%d" % [str(ingredient_id), int(ingredients[ingredient_id])])
-	var ing_label: Label = Label.new()
-	ing_label.text = "Ingredients: %s" % ", ".join(ing_text)
-	ing_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	stack.add_child(ing_label)
+	var parts: Array[String]    = []
+	for k in ingredients.keys():
+		parts.append("%s ×%d" % [str(k), int(ingredients[k])])
+	var ing_lbl := Label.new()
+	ing_lbl.text = "Needs: %s" % ", ".join(parts)
+	ing_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	ing_lbl.modulate = Color(0.8, 0.8, 0.8)
+	stack.add_child(ing_lbl)
 
-	var prep_label: Label = Label.new()
-	prep_label.text = "Prep: %.1fs" % float(recipe.get("prep_time", 0.0))
-	stack.add_child(prep_label)
+	# Prep time
+	var prep_lbl := Label.new()
+	prep_lbl.text = "Prep: %.1fs" % float(recipe.get("prep_time", 0.0))
+	prep_lbl.modulate = Color(0.8, 0.8, 0.8)
+	stack.add_child(prep_lbl)
 
-	var price_row: HBoxContainer = HBoxContainer.new()
+	# Price row
+	var price_row := HBoxContainer.new()
 	price_row.add_theme_constant_override("separation", 6)
-	var minus_button: Button = Button.new()
-	minus_button.text = "-"
-	minus_button.custom_minimum_size = Vector2(32, 30)
-	minus_button.pressed.connect(func() -> void: _adjust_price(recipe_name, -1))
-	price_row.add_child(minus_button)
-	var price_label: Label = Label.new()
-	price_label.name = "PriceLabel"
-	price_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	price_label.text = "Price: %d" % MenuManager.get_price(recipe_name)
-	price_row.add_child(price_label)
-	var plus_button: Button = Button.new()
-	plus_button.text = "+"
-	plus_button.custom_minimum_size = Vector2(32, 30)
-	plus_button.pressed.connect(func() -> void: _adjust_price(recipe_name, 1))
-	price_row.add_child(plus_button)
+
+	var minus_btn := Button.new()
+	minus_btn.text = "−"
+	minus_btn.custom_minimum_size = Vector2(34, 30)
+	minus_btn.pressed.connect(func() -> void: _adjust_price(recipe_name, -1))
+	price_row.add_child(minus_btn)
+
+	var price_lbl := Label.new()
+	price_lbl.name = "PriceLabel"
+	price_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	price_lbl.text = "Price: $%d" % MenuManager.get_price(recipe_name)
+	price_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	price_row.add_child(price_lbl)
+
+	var plus_btn := Button.new()
+	plus_btn.text = "+"
+	plus_btn.custom_minimum_size = Vector2(34, 30)
+	plus_btn.pressed.connect(func() -> void: _adjust_price(recipe_name, 1))
+	price_row.add_child(plus_btn)
 	stack.add_child(price_row)
 
-	var toggle_button: Button = Button.new()
+	# Toggle on/off menu
 	var active_now: bool = recipe_name in MenuManager.get_active_menu()
-	toggle_button.text = "On Menu" if active_now else "Off Menu"
-	toggle_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	toggle_button.pressed.connect(func() -> void: _toggle_recipe(recipe_name))
-	stack.add_child(toggle_button)
+	var toggle_btn := Button.new()
+	toggle_btn.text = "✓ On Menu" if active_now else "Off Menu"
+	toggle_btn.modulate = Color(0.4, 0.9, 0.5) if active_now else Color.WHITE
+	toggle_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	toggle_btn.pressed.connect(func() -> void: _toggle_recipe(recipe_name))
+	stack.add_child(toggle_btn)
 
 	return panel
 
 func _build_locked_card(recipe_name: String, unlock_level: int) -> PanelContainer:
-	var panel: PanelContainer = PanelContainer.new()
+	var panel  := PanelContainer.new()
 	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var margin: MarginContainer = MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 8)
-	margin.add_theme_constant_override("margin_top", 6)
-	margin.add_theme_constant_override("margin_right", 8)
+	panel.modulate = Color(0.6, 0.6, 0.6)
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left",   8)
+	margin.add_theme_constant_override("margin_top",    6)
+	margin.add_theme_constant_override("margin_right",  8)
 	margin.add_theme_constant_override("margin_bottom", 6)
 	panel.add_child(margin)
 
-	var stack: VBoxContainer = VBoxContainer.new()
+	var stack := VBoxContainer.new()
 	stack.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	margin.add_child(stack)
 
-	var title: Label = Label.new()
-	title.text = recipe_name
-	title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	var title := Label.new()
+	title.text = "🔒 %s" % recipe_name
 	stack.add_child(title)
-	var subtitle: Label = Label.new()
-	subtitle.text = "Unlocks at Level %d" % unlock_level
-	subtitle.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	stack.add_child(subtitle)
+
+	var sub := Label.new()
+	sub.text = "Unlocks at Level %d" % unlock_level
+	sub.modulate = Color(0.7, 0.7, 0.7)
+	stack.add_child(sub)
+
 	return panel
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ACTIONS
+# ─────────────────────────────────────────────────────────────────────────────
 
 func _adjust_price(recipe_name: String, delta: int) -> void:
 	var recipe: Dictionary = RecipeManager.get_recipe(recipe_name)
 	if recipe.is_empty():
 		status_label.text = "Recipe not found."
 		return
-	var base: int = int(recipe.get("base_price", 0))
+	var base:    int = int(recipe.get("base_price", 0))
 	var current: int = MenuManager.get_price(recipe_name)
-	var next: int = clampi(current + delta, base, base * 3)
+	var next:    int = clampi(current + delta, base, base * 3)
 	if not MenuManager.set_price(recipe_name, next):
 		status_label.text = "Could not set price."
 		return
-	status_label.text = "Set %s price to %d." % [recipe_name, next]
+	status_label.text = "Set %s price → $%d." % [recipe_name, next]
 	_render()
 
 func _toggle_recipe(recipe_name: String) -> void:
 	var active_now: bool = recipe_name in MenuManager.get_active_menu()
 	if not MenuManager.set_active(recipe_name, not active_now):
-		status_label.text = "Cannot activate more items (max reached)."
+		status_label.text = "Menu is full (max %d items)." % UpgradeManager.max_active_menu_items
 		return
-	status_label.text = "%s is now %s." % [recipe_name, "On Menu" if not active_now else "Off Menu"]
+	status_label.text = "%s is now %s." % [recipe_name, "On Menu ✓" if not active_now else "Off Menu"]
 	_render()

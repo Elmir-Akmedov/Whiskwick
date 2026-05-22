@@ -57,4 +57,3 @@ func complete_order(order_id: int) -> bool:
 			emit_signal("order_completed", order)
 			return true
 	return false
-

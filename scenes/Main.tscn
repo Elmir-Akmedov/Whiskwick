@@ -240,21 +240,21 @@ offset_left = 32.0
 offset_top = 64.0
 offset_right = 480.0
 offset_bottom = 672.0
-color = Color(0.62, 0.7, 0.66, 0.72)
+color = Color(0.62, 0.7, 0.66, 0)
 
 [node name="Kitchen" type="ColorRect" parent="World" unique_id=354926701]
 offset_left = 480.0
 offset_top = 64.0
 offset_right = 960.0
 offset_bottom = 672.0
-color = Color(0.68, 0.66, 0.6, 0.72)
+color = Color(0.68, 0.66, 0.6, 0)
 
 [node name="Warehouse" type="ColorRect" parent="World" unique_id=116939510]
 offset_left = 960.0
 offset_top = 64.0
 offset_right = 1248.0
 offset_bottom = 672.0
-color = Color(0.58, 0.64, 0.72, 0.72)
+color = Color(0.58, 0.64, 0.72, 0)
 
 [node name="ZoneDividers" type="Node2D" parent="World" unique_id=175571851]
 
@@ -353,6 +353,7 @@ offset_bottom = 318.0
 color = Color(0.3, 0.31, 0.28, 1)
 
 [node name="CashierStandLabel" type="Label" parent="World/SalesRoomFixtures" unique_id=906826136]
+visible = false
 offset_left = 221.0
 offset_top = 277.0
 offset_right = 300.0
@@ -368,9 +369,10 @@ offset_left = 65.0
 offset_top = 297.0
 offset_right = 225.0
 offset_bottom = 318.0
-color = Color(0.38, 0.34, 0.25, 1)
+color = Color(1, 1, 1, 0.02)
 
 [node name="DisplayShelfLabel" type="Label" parent="World/SalesRoomFixtures" unique_id=893009477]
+visible = false
 offset_left = 302.0
 offset_top = 162.0
 offset_right = 434.0
@@ -385,9 +387,10 @@ offset_left = 96.0
 offset_top = 416.0
 offset_right = 224.0
 offset_bottom = 544.0
-color = Color(0.44, 0.47, 0.38, 1)
+color = Color(1, 1, 1, 0.02)
 
 [node name="TableALabel" type="Label" parent="World/SalesRoomFixtures" unique_id=778848169]
+visible = false
 offset_left = 112.0
 offset_top = 462.0
 offset_right = 208.0
@@ -402,9 +405,10 @@ offset_left = 288.0
 offset_top = 416.0
 offset_right = 416.0
 offset_bottom = 544.0
-color = Color(0.44, 0.47, 0.38, 1)
+color = Color(1, 1, 1, 0.02)
 
 [node name="TableBLabel" type="Label" parent="World/SalesRoomFixtures" unique_id=1243354647]
+visible = false
 offset_left = 304.0
 offset_top = 462.0
 offset_right = 400.0
@@ -422,6 +426,7 @@ offset_bottom = 368.0
 color = Color(0.82, 0.8, 0.68, 0.8)
 
 [node name="CustomerPathLabel" type="Label" parent="World/SalesRoomFixtures" unique_id=35121959]
+visible = false
 offset_left = 190.0
 offset_top = 332.0
 offset_right = 330.0
@@ -438,9 +443,10 @@ offset_left = 512.0
 offset_top = 160.0
 offset_right = 736.0
 offset_bottom = 288.0
-color = Color(0.34, 0.35, 0.32, 1)
+color = Color(1, 1, 1, 0.02)
 
 [node name="PrepCounterLabel" type="Label" parent="World/KitchenFixtures" unique_id=144835824]
+visible = false
 offset_left = 556.0
 offset_top = 204.0
 offset_right = 692.0
@@ -456,9 +462,10 @@ offset_left = 800.0
 offset_top = 128.0
 offset_right = 928.0
 offset_bottom = 288.0
-color = Color(0.22, 0.22, 0.22, 1)
+color = Color(1, 1, 1, 0.02)
 
 [node name="OvenLabel" type="Label" parent="World/KitchenFixtures" unique_id=557914495]
+visible = false
 offset_left = 818.0
 offset_top = 194.0
 offset_right = 910.0
@@ -469,13 +476,14 @@ text = "OVEN"
 horizontal_alignment = 1
 
 [node name="MixerMachine" type="ColorRect" parent="World/KitchenFixtures" unique_id=135937026]
-offset_left = 544.0
-offset_top = 384.0
-offset_right = 672.0
-offset_bottom = 512.0
-color = Color(0.27, 0.31, 0.36, 1)
+offset_left = 607.0
+offset_top = 380.0
+offset_right = 735.0
+offset_bottom = 508.0
+color = Color(1, 1, 1, 0.02)
 
 [node name="MixerMachineLabel" type="Label" parent="World/KitchenFixtures" unique_id=1373831546]
+visible = false
 offset_left = 558.0
 offset_top = 428.0
 offset_right = 658.0
@@ -491,9 +499,10 @@ offset_left = 736.0
 offset_top = 384.0
 offset_right = 896.0
 offset_bottom = 512.0
-color = Color(0.27, 0.31, 0.36, 1)
+color = Color(1, 1, 1, 0.02)
 
 [node name="PackingMachineLabel" type="Label" parent="World/KitchenFixtures" unique_id=1078390406]
+visible = false
 offset_left = 748.0
 offset_top = 428.0
 offset_right = 884.0
@@ -505,13 +514,14 @@ MACHINE"
 horizontal_alignment = 1
 
 [node name="WorkersArea" type="ColorRect" parent="World/KitchenFixtures" unique_id=1339050850]
-offset_left = 512.0
-offset_top = 544.0
-offset_right = 928.0
-offset_bottom = 640.0
+offset_left = 528.0
+offset_top = 278.0
+offset_right = 944.0
+offset_bottom = 374.0
 color = Color(0.5, 0.46, 0.39, 0.85)
 
 [node name="WorkersAreaLabel" type="Label" parent="World/KitchenFixtures" unique_id=1499252618]
+visible = false
 offset_left = 650.0
 offset_top = 574.0
 offset_right = 790.0
@@ -528,9 +538,10 @@ offset_left = 992.0
 offset_top = 144.0
 offset_right = 1056.0
 offset_bottom = 608.0
-color = Color(0.28, 0.32, 0.38, 1)
+color = Color(1, 1, 1, 0.02)
 
 [node name="RackALabel" type="Label" parent="World/WarehouseFixtures" unique_id=712446336]
+visible = false
 offset_left = 1000.0
 offset_top = 342.0
 offset_right = 1048.0
@@ -546,9 +557,10 @@ offset_left = 1088.0
 offset_top = 144.0
 offset_right = 1152.0
 offset_bottom = 608.0
-color = Color(0.28, 0.32, 0.38, 1)
+color = Color(1, 1, 1, 0.02)
 
 [node name="RackBLabel" type="Label" parent="World/WarehouseFixtures" unique_id=1331140152]
+visible = false
 offset_left = 1096.0
 offset_top = 342.0
 offset_right = 1144.0
@@ -564,9 +576,10 @@ offset_left = 1184.0
 offset_top = 448.0
 offset_right = 1232.0
 offset_bottom = 608.0
-color = Color(0.39, 0.43, 0.5, 1)
+color = Color(1, 1, 1, 0.02)
 
 [node name="ReceivingZoneLabel" type="Label" parent="World/WarehouseFixtures" unique_id=1848340505]
+visible = false
 offset_left = 1186.0
 offset_top = 492.0
 offset_right = 1230.0
@@ -577,6 +590,7 @@ text = "RECV"
 horizontal_alignment = 1
 
 [node name="RackNoteLabel" type="Label" parent="World/WarehouseFixtures" unique_id=1221692221]
+visible = false
 offset_left = 1000.0
 offset_top = 112.0
 offset_right = 1216.0
@@ -595,6 +609,7 @@ color = Color(0.18, 0.24, 0.32, 1)
 script = ExtResource("3_player")
 
 [node name="PlayerLabel" type="Label" parent="World/Player" unique_id=1441813659]
+visible = false
 layout_mode = 0
 offset_left = -12.0
 offset_top = -24.0

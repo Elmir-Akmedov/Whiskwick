@@ -1,9 +1,14 @@
 extends Node2D
+# ─────────────────────────────────────────────────────────────────────────────
+# UpgradeScreen.gd  –  Phase 2 upgrade
+# Shows all upgrades. Purchased ones show a checkmark.
+# Buy button bounces on success.
+# ─────────────────────────────────────────────────────────────────────────────
 
-@onready var coins_label: Label = $UI/TopBar/CoinsLabel
-@onready var list_root: VBoxContainer = $UI/ListPanel/Margin/Scroll/List
-@onready var status_label: Label = $UI/StatusLabel
-@onready var back_button: Button = $UI/BackButton
+@onready var coins_label:  Label         = $UI/TopBar/CoinsLabel
+@onready var list_root:    VBoxContainer = $UI/ListPanel/Margin/Scroll/List
+@onready var status_label: Label         = $UI/StatusLabel
+@onready var back_button:  Button        = $UI/BackButton
 
 func _ready() -> void:
 	_render_upgrades()
@@ -12,64 +17,90 @@ func _ready() -> void:
 		get_tree().change_scene_to_file("res://scenes/Main.tscn")
 	)
 
+# ─────────────────────────────────────────────────────────────────────────────
+
 func _refresh_coins() -> void:
-	coins_label.text = "Coins: %d" % GameState.coins
+	coins_label.text = "Coins: $%d" % GameState.coins
 
 func _render_upgrades() -> void:
 	for child in list_root.get_children():
 		child.queue_free()
+
 	for upgrade in UpgradeManager.get_all_upgrades():
-		var panel: PanelContainer = PanelContainer.new()
+		var upgrade_name: String = str(upgrade.get("name", "Upgrade"))
+		var purchased:    bool   = bool(upgrade.get("purchased", false))
+		var cost:         int    = int(upgrade.get("cost", 0))
+		var can_afford:   bool   = GameState.coins >= cost
+
+		var panel  := PanelContainer.new()
 		panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
-		var margin: MarginContainer = MarginContainer.new()
-		margin.add_theme_constant_override("margin_left", 8)
-		margin.add_theme_constant_override("margin_top", 6)
-		margin.add_theme_constant_override("margin_right", 8)
-		margin.add_theme_constant_override("margin_bottom", 6)
+		var margin := MarginContainer.new()
+		margin.add_theme_constant_override("margin_left",   10)
+		margin.add_theme_constant_override("margin_top",     8)
+		margin.add_theme_constant_override("margin_right",  10)
+		margin.add_theme_constant_override("margin_bottom",  8)
 		panel.add_child(margin)
 
-		var card: VBoxContainer = VBoxContainer.new()
+		var card := VBoxContainer.new()
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		card.add_theme_constant_override("separation", 4)
 		margin.add_child(card)
 
-		var title: Label = Label.new()
-		var name: String = str(upgrade.get("name", "Upgrade"))
-		var purchased: bool = bool(upgrade.get("purchased", false))
-		title.text = "%s%s" % [name, " (Bought)" if purchased else ""]
-		title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		# Title
+		var title := Label.new()
+		title.text = ("%s  ✓" % upgrade_name) if purchased else upgrade_name
+		title.add_theme_font_size_override("font_size", 17)
+		if purchased:
+			title.modulate = Color(0.4, 0.9, 0.5)
 		card.add_child(title)
 
-		var description: Label = Label.new()
-		description.text = str(upgrade.get("description", ""))
-		description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		card.add_child(description)
+		# Description
+		var desc := Label.new()
+		desc.text = str(upgrade.get("description", ""))
+		desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		desc.modulate = Color(0.85, 0.85, 0.85)
+		card.add_child(desc)
 
-		var row: HBoxContainer = HBoxContainer.new()
-		row.add_theme_constant_override("separation", 8)
+		# Cost row + button
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 10)
 
-		var cost_label: Label = Label.new()
-		cost_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		cost_label.text = "Cost: %d" % int(upgrade.get("cost", 0))
-		row.add_child(cost_label)
+		var cost_lbl := Label.new()
+		cost_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		cost_lbl.text = "Cost: $%d" % cost
+		if not purchased and not can_afford:
+			cost_lbl.modulate = Color(0.9, 0.3, 0.3)
+		row.add_child(cost_lbl)
 
-		var button: Button = Button.new()
-		button.custom_minimum_size = Vector2(96, 34)
-		button.text = "Bought" if purchased else "Buy"
-		button.disabled = purchased or GameState.coins < int(upgrade.get("cost", 0))
-		button.pressed.connect(func() -> void:
-			_buy_upgrade(name)
-		)
-		row.add_child(button)
+		var buy_btn := Button.new()
+		buy_btn.custom_minimum_size = Vector2(100, 36)
+		if purchased:
+			buy_btn.text     = "Purchased"
+			buy_btn.disabled = true
+		elif not can_afford:
+			buy_btn.text     = "Need $%d" % cost
+			buy_btn.disabled = true
+		else:
+			buy_btn.text     = "Buy"
+			buy_btn.disabled = false
+			buy_btn.pressed.connect(func() -> void: _buy_upgrade(upgrade_name, buy_btn))
+		row.add_child(buy_btn)
 
 		card.add_child(row)
 		list_root.add_child(panel)
 
-func _buy_upgrade(name: String) -> void:
-	if UpgradeManager.purchase(name):
-		status_label.text = "Purchased: %s" % name
+# ─────────────────────────────────────────────────────────────────────────────
+
+func _buy_upgrade(upgrade_name: String, btn: Button) -> void:
+	if UpgradeManager.purchase(upgrade_name):
+		status_label.text = "Purchased: %s!" % upgrade_name
+		# Bounce animation on the button
+		var tween := create_tween()
+		tween.tween_property(btn, "scale", Vector2(1.15, 1.15), 0.1)
+		tween.tween_property(btn, "scale", Vector2(1.0,  1.0),  0.1)
+		await tween.finished
 		_render_upgrades()
 		_refresh_coins()
 	else:
-		status_label.text = "Cannot purchase: %s" % name
+		status_label.text = "Cannot purchase: %s" % upgrade_name
