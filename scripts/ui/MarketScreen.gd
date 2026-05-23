@@ -36,7 +36,7 @@ func _ready() -> void:
 	_build_rows()
 	_refresh()
 	back_button.pressed.connect(func() -> void:
-		get_tree().change_scene_to_file("res://scenes/Main.tscn")
+		get_tree().change_scene_to_file("res://scenes/gameplay/Main.tscn")
 	)
 
 # ─────────────────────────────────────────────────────────────────────────────

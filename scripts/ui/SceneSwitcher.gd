@@ -1,12 +1,12 @@
 extends CanvasLayer
 
 const TEST_SCENES := [
-	{"label": "Main", "path": "res://scenes/Main.tscn"},
-	{"label": "ShopFloor", "path": "res://scenes/ShopFloor.tscn"},
-	{"label": "MarketScreen", "path": "res://scenes/MarketScreen.tscn"},
-	{"label": "UpgradeScreen", "path": "res://scenes/UpgradeScreen.tscn"},
-	{"label": "MenuScreen", "path": "res://scenes/MenuScreen.tscn"},
-	{"label": "DaySummaryScreen", "path": "res://scenes/DaySummaryScreen.tscn"}
+	{"label": "Main", "path": "res://scenes/gameplay/Main.tscn"},
+	{"label": "ShopFloor", "path": "res://scenes/screens/ShopFloor.tscn"},
+	{"label": "MarketScreen", "path": "res://scenes/screens/MarketScreen.tscn"},
+	{"label": "UpgradeScreen", "path": "res://scenes/screens/UpgradeScreen.tscn"},
+	{"label": "MenuScreen", "path": "res://scenes/screens/MenuScreen.tscn"},
+	{"label": "DaySummaryScreen", "path": "res://scenes/screens/DaySummaryScreen.tscn"}
 ]
 
 func _ready() -> void:

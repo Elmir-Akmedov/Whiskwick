@@ -21,10 +21,10 @@ func _ready() -> void:
 	_apply_daily_results()
 
 	go_market_button.pressed.connect(func() -> void:
-		get_tree().change_scene_to_file("res://scenes/MarketScreen.tscn")
+		get_tree().change_scene_to_file("res://scenes/screens/MarketScreen.tscn")
 	)
 	go_upgrade_button.pressed.connect(func() -> void:
-		get_tree().change_scene_to_file("res://scenes/UpgradeScreen.tscn")
+		get_tree().change_scene_to_file("res://scenes/screens/UpgradeScreen.tscn")
 	)
 
 # ─────────────────────────────────────────────────────────────────────────────

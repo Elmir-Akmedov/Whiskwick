@@ -19,4 +19,4 @@ func _ready() -> void:
 		add_child(back)
 
 func _go_main() -> void:
-	get_tree().change_scene_to_file("res://scenes/Main.tscn")
+	get_tree().change_scene_to_file("res://scenes/gameplay/Main.tscn")

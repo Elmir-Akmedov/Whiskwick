@@ -202,4 +202,4 @@ func _on_end_day_pressed() -> void:
 	status_label.text = "Day ended. Tallying results…"
 
 	await get_tree().create_timer(1.2).timeout
-	get_tree().change_scene_to_file("res://scenes/DaySummaryScreen.tscn")
+	get_tree().change_scene_to_file("res://scenes/screens/DaySummaryScreen.tscn")

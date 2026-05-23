@@ -2,9 +2,9 @@ extends RefCounted
 class_name GeneratedArtPresenter
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Whiskwick – GeneratedArtPresenter  (Phase 1 upgrade: pixel arts/ sprites)
+# Whiskwick – GeneratedArtPresenter  (Phase 1 upgrade: assets/art/pixel/ sprites)
 #
-# All textures now point to "res://pixel arts/" hand-crafted sprites.
+# All textures now point to "res://assets/art/pixel/" hand-crafted sprites.
 # Architecture is identical to the original so every existing call site works.
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -15,59 +15,59 @@ const FLOOR_TEXTURE_PATH   := "res://assets/art/generated/environment/batch_03/r
 const WALL_TEXTURE_PATH    := "res://assets/art/generated/environment/batch_03/room_wall_modules_8x3.png"
 const DECAL_TEXTURE_PATH   := "res://assets/art/generated/environment/batch_03/floor_decals_markers_8x1.png"
 
-# ── Characters (pixel arts/ hand-crafted sprites)
-const PLAYER_WALK_TEXTURE_PATH := "res://pixel arts/player_4dir.png"
-const PLAYER_SOUTH_TEXTURE_PATH := "res://pixel arts/player_walk_south.png"
+# ── Characters (assets/art/pixel/ hand-crafted sprites)
+const PLAYER_WALK_TEXTURE_PATH := "res://assets/art/pixel/player_4dir.png"
+const PLAYER_SOUTH_TEXTURE_PATH := "res://assets/art/pixel/player_walk_south.png"
 
-# ── Workers (pixel arts/ individual sprites)
-const WORKER_BAKER_PATH   := "res://pixel arts/worker_baker.png"
-const WORKER_CASHIER_PATH := "res://pixel arts/worker_cashier.png"
-const WORKER_RUNNER_PATH  := "res://pixel arts/worker_runner.png"
-const WORKER_CLEANER_PATH := "res://pixel arts/worker_cleaner.png"
+# ── Workers (assets/art/pixel/ individual sprites)
+const WORKER_BAKER_PATH   := "res://assets/art/pixel/worker_baker.png"
+const WORKER_CASHIER_PATH := "res://assets/art/pixel/worker_cashier.png"
+const WORKER_RUNNER_PATH  := "res://assets/art/pixel/worker_runner.png"
+const WORKER_CLEANER_PATH := "res://assets/art/pixel/worker_cleaner.png"
 
-# ── Customers (pixel arts/ individual sprites)
-const CUSTOMER_REGULAR_PATH := "res://pixel arts/customer_regular.png"
-const CUSTOMER_KID_PATH     := "res://pixel arts/customer_kid.png"
-const CUSTOMER_OFFICE_PATH  := "res://pixel arts/customer_office.png"
-const CUSTOMER_ELDER_PATH   := "res://pixel arts/customer_elder.png"
+# ── Customers (assets/art/pixel/ individual sprites)
+const CUSTOMER_REGULAR_PATH := "res://assets/art/pixel/customer_regular.png"
+const CUSTOMER_KID_PATH     := "res://assets/art/pixel/customer_kid.png"
+const CUSTOMER_OFFICE_PATH  := "res://assets/art/pixel/customer_office.png"
+const CUSTOMER_ELDER_PATH   := "res://assets/art/pixel/customer_elder.png"
 
-# ── Machines / placeables (pixel arts/ individual sprites)
-const OVEN_PATH            := "res://pixel arts/oven.png"
-const PREP_COUNTER_PATH    := "res://pixel arts/prep_counter.png"
-const STOVETOP_PATH        := "res://pixel arts/stovetop.png"
-const SHELF_DISPLAY_PATH   := "res://pixel arts/shelf_display.png"
-const SHELF_INGR_PATH      := "res://pixel arts/shelf_ingredients.png"
-const SHELF_WARE_PATH      := "res://pixel arts/shelf_warehouse.png"
-const MIXER_PATH           := "res://pixel arts/mixer.png"
-const CASHIER_STAND_PATH   := "res://pixel arts/cashier_stand.png"
-const SINK_PATH            := "res://pixel arts/sink.png"
-const TABLE_2_PATH         := "res://pixel arts/table_2seat.png"
-const TABLE_4_PATH         := "res://pixel arts/table_4seat.png"
-const COLD_STORAGE_PATH    := "res://pixel arts/cold_storage.png"
-const TABLET_STATION_PATH  := "res://pixel arts/tablet_station.png"
-const TRASH_BIN_PATH       := "res://pixel arts/trash_bin.png"
-const PLANT_DECOR_PATH     := "res://pixel arts/plant_decor.png"
-const INGREDIENT_CRATE_PATH := "res://pixel arts/ingredient_crate.png"
-const DELIVERY_BOX_PATH    := "res://pixel arts/delivery_box.png"
-const SERVICE_COUNTER_PATH := "res://pixel arts/service_counter.png"
-const COOLING_RACK_PATH    := "res://pixel arts/cooling_rack.png"
-const PALLET_PATH          := "res://pixel arts/pallet.png"
+# ── Machines / placeables (assets/art/pixel/ individual sprites)
+const OVEN_PATH            := "res://assets/art/pixel/oven.png"
+const PREP_COUNTER_PATH    := "res://assets/art/pixel/prep_counter.png"
+const STOVETOP_PATH        := "res://assets/art/pixel/stovetop.png"
+const SHELF_DISPLAY_PATH   := "res://assets/art/pixel/shelf_display.png"
+const SHELF_INGR_PATH      := "res://assets/art/pixel/shelf_ingredients.png"
+const SHELF_WARE_PATH      := "res://assets/art/pixel/shelf_warehouse.png"
+const MIXER_PATH           := "res://assets/art/pixel/mixer.png"
+const CASHIER_STAND_PATH   := "res://assets/art/pixel/cashier_stand.png"
+const SINK_PATH            := "res://assets/art/pixel/sink.png"
+const TABLE_2_PATH         := "res://assets/art/pixel/table_2seat.png"
+const TABLE_4_PATH         := "res://assets/art/pixel/table_4seat.png"
+const COLD_STORAGE_PATH    := "res://assets/art/pixel/cold_storage.png"
+const TABLET_STATION_PATH  := "res://assets/art/pixel/tablet_station.png"
+const TRASH_BIN_PATH       := "res://assets/art/pixel/trash_bin.png"
+const PLANT_DECOR_PATH     := "res://assets/art/pixel/plant_decor.png"
+const INGREDIENT_CRATE_PATH := "res://assets/art/pixel/ingredient_crate.png"
+const DELIVERY_BOX_PATH    := "res://assets/art/pixel/delivery_box.png"
+const SERVICE_COUNTER_PATH := "res://assets/art/pixel/service_counter.png"
+const COOLING_RACK_PATH    := "res://assets/art/pixel/cooling_rack.png"
+const PALLET_PATH          := "res://assets/art/pixel/pallet.png"
 
 # ── Decor / props
-const DOOR_ENTRANCE_PATH   := "res://pixel arts/door_entrance.png"
-const DOOR_INTERIOR_PATH   := "res://pixel arts/door_interior.png"
-const DECOR_MENU_BOARD_PATH := "res://pixel arts/decor_menu_board.png"
-const DECOR_WALL_CLOCK_PATH := "res://pixel arts/decor_wall_clock.png"
-const DECOR_PINBOARD_PATH  := "res://pixel arts/decor_pinboard.png"
-const DECOR_FRAMED_ART_PATH := "res://pixel arts/decor_framed_art.png"
-const DECOR_HANGING_LIGHT_PATH := "res://pixel arts/decor_hanging_light.png"
+const DOOR_ENTRANCE_PATH   := "res://assets/art/pixel/door_entrance.png"
+const DOOR_INTERIOR_PATH   := "res://assets/art/pixel/door_interior.png"
+const DECOR_MENU_BOARD_PATH := "res://assets/art/pixel/decor_menu_board.png"
+const DECOR_WALL_CLOCK_PATH := "res://assets/art/pixel/decor_wall_clock.png"
+const DECOR_PINBOARD_PATH  := "res://assets/art/pixel/decor_pinboard.png"
+const DECOR_FRAMED_ART_PATH := "res://assets/art/pixel/decor_framed_art.png"
+const DECOR_HANGING_LIGHT_PATH := "res://assets/art/pixel/decor_hanging_light.png"
 
 # ── FX sprites
-const FX_COIN_POP_PATH     := "res://pixel arts/fx_coin_pop.png"
-const FX_SPARKLE_PATH      := "res://pixel arts/fx_sparkle.png"
-const FX_STEAM_PATH        := "res://pixel arts/fx_steam.png"
-const FX_DUST_PUFF_PATH    := "res://pixel arts/fx_dust_puff.png"
-const FX_HEAT_SHIMMER_PATH := "res://pixel arts/fx_heat_shimmer.png"
+const FX_COIN_POP_PATH     := "res://assets/art/pixel/fx_coin_pop.png"
+const FX_SPARKLE_PATH      := "res://assets/art/pixel/fx_sparkle.png"
+const FX_STEAM_PATH        := "res://assets/art/pixel/fx_steam.png"
+const FX_DUST_PUFF_PATH    := "res://assets/art/pixel/fx_dust_puff.png"
+const FX_HEAT_SHIMMER_PATH := "res://assets/art/pixel/fx_heat_shimmer.png"
 
 # ── Floor-tile row map (batch_03 sheet, unchanged)
 const ROOM_FLOOR_ROWS := {
@@ -80,26 +80,27 @@ const ROOM_FLOOR_ROWS := {
 # Every call to decorate_control() looks up the build_id here and loads
 # the matching full-sprite PNG (no atlas slicing needed for individual sprites).
 const MACHINE_TEXTURE_MAP := {
-	"oven_basic":           "res://pixel arts/oven.png",
-	"prep_counter_basic":   "res://pixel arts/prep_counter.png",
-	"stovetop_basic":       "res://pixel arts/stovetop.png",
-	"display_case_basic":   "res://pixel arts/shelf_display.png",
-	"warehouse_shelf_basic":"res://pixel arts/shelf_warehouse.png",
-	"cold_storage_basic":   "res://pixel arts/cold_storage.png",
-	"mixer":                "res://pixel arts/mixer.png",
-	"drink_station":        "res://pixel arts/stovetop.png",
-	"service_counter_basic":"res://pixel arts/service_counter.png",
-	"small_table_two_seat": "res://pixel arts/table_2seat.png",
-	"small_table_four_seat":"res://pixel arts/table_4seat.png",
-	"sink":                 "res://pixel arts/sink.png",
-	"trash_bin":            "res://pixel arts/trash_bin.png",
-	"tablet_station":       "res://pixel arts/tablet_station.png",
-	"packing_station":      "res://pixel arts/prep_counter.png",
-	"decor_plant":          "res://pixel arts/plant_decor.png",
-	"ingredient_crate_stack":"res://pixel arts/ingredient_crate.png",
-	"kitchen_pass_counter": "res://pixel arts/service_counter.png",
-	"cooling_rack":         "res://pixel arts/cooling_rack.png",
-	"delivery_box":         "res://pixel arts/delivery_box.png",
+	"oven_basic":           "res://assets/art/pixel/oven.png",
+	"prep_counter_basic":   "res://assets/art/pixel/prep_counter.png",
+	"stovetop_basic":       "res://assets/art/pixel/stovetop.png",
+	"display_case_basic":   "res://assets/art/pixel/shelf_display.png",
+	"warehouse_shelf_basic":"res://assets/art/pixel/shelf_warehouse.png",
+	"cold_storage_basic":   "res://assets/art/pixel/cold_storage.png",
+	"mixer":                "res://assets/art/pixel/mixer.png",
+	"drink_station":        "res://assets/art/pixel/stovetop.png",
+	"cashier_stand":        "res://assets/art/pixel/cashier_stand.png",
+	"service_counter_basic":"res://assets/art/pixel/service_counter.png",
+	"small_table_two_seat": "res://assets/art/pixel/table_2seat.png",
+	"small_table_four_seat":"res://assets/art/pixel/table_4seat.png",
+	"sink":                 "res://assets/art/pixel/sink.png",
+	"trash_bin":            "res://assets/art/pixel/trash_bin.png",
+	"tablet_station":       "res://assets/art/pixel/tablet_station.png",
+	"packing_station":      "res://assets/art/pixel/prep_counter.png",
+	"decor_plant":          "res://assets/art/pixel/plant_decor.png",
+	"ingredient_crate_stack":"res://assets/art/pixel/ingredient_crate.png",
+	"kitchen_pass_counter": "res://assets/art/pixel/service_counter.png",
+	"cooling_rack":         "res://assets/art/pixel/cooling_rack.png",
+	"delivery_box":         "res://assets/art/pixel/delivery_box.png",
 }
 
 # ── Animated machine ids → cycle sheet + frame count
@@ -175,7 +176,7 @@ static func decorate_control(control: Control, build_id: String, frame_size: Vec
 		control.add_child(anim_sprite)
 		return true
 
-	# ── Static path – pixel arts/ individual PNG
+	# ── Static path – assets/art/pixel/ individual PNG
 	if MACHINE_TEXTURE_MAP.has(build_id):
 		_clear_visual_children(control)
 		if control is ColorRect:

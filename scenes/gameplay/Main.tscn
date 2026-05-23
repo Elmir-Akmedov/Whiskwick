@@ -1,0 +1,672 @@
+[gd_scene format=3 uid="uid://d38x8jjj3fqas"]
+
+[ext_resource type="Script" path="res://scripts/gameplay/Main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="2_hud"]
+[ext_resource type="Script" path="res://scripts/gameplay/PlayerController.gd" id="3_player"]
+[ext_resource type="Script" path="res://scripts/gameplay/GridOverlay.gd" id="4_grid"]
+
+[node name="Main" type="Node2D" unique_id=1810260018]
+script = ExtResource("1_main")
+
+[node name="World" type="Node2D" parent="." unique_id=941825012]
+
+[node name="Background" type="ColorRect" parent="World" unique_id=1582161365]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.78, 0.78, 0.74, 1)
+
+[node name="TileGrid" type="Node2D" parent="World" unique_id=251843158]
+script = ExtResource("4_grid")
+
+[node name="GridV00" type="ColorRect" parent="World/TileGrid" unique_id=194154598]
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 34.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV01" type="ColorRect" parent="World/TileGrid" unique_id=1455070078]
+offset_left = 96.0
+offset_top = 64.0
+offset_right = 98.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV02" type="ColorRect" parent="World/TileGrid" unique_id=1366209998]
+offset_left = 160.0
+offset_top = 64.0
+offset_right = 162.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV03" type="ColorRect" parent="World/TileGrid" unique_id=1910452275]
+offset_left = 224.0
+offset_top = 64.0
+offset_right = 226.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV04" type="ColorRect" parent="World/TileGrid" unique_id=1192307701]
+offset_left = 288.0
+offset_top = 64.0
+offset_right = 290.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV05" type="ColorRect" parent="World/TileGrid" unique_id=1707652753]
+offset_left = 352.0
+offset_top = 64.0
+offset_right = 354.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV06" type="ColorRect" parent="World/TileGrid" unique_id=598625432]
+offset_left = 416.0
+offset_top = 64.0
+offset_right = 418.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV07" type="ColorRect" parent="World/TileGrid" unique_id=80840037]
+offset_left = 480.0
+offset_top = 64.0
+offset_right = 482.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV08" type="ColorRect" parent="World/TileGrid" unique_id=805465790]
+offset_left = 544.0
+offset_top = 64.0
+offset_right = 546.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV09" type="ColorRect" parent="World/TileGrid" unique_id=1862061164]
+offset_left = 608.0
+offset_top = 64.0
+offset_right = 610.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV10" type="ColorRect" parent="World/TileGrid" unique_id=752095836]
+offset_left = 672.0
+offset_top = 64.0
+offset_right = 674.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV11" type="ColorRect" parent="World/TileGrid" unique_id=335781116]
+offset_left = 736.0
+offset_top = 64.0
+offset_right = 738.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV12" type="ColorRect" parent="World/TileGrid" unique_id=1762312902]
+offset_left = 800.0
+offset_top = 64.0
+offset_right = 802.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV13" type="ColorRect" parent="World/TileGrid" unique_id=140539298]
+offset_left = 864.0
+offset_top = 64.0
+offset_right = 866.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV14" type="ColorRect" parent="World/TileGrid" unique_id=1513535898]
+offset_left = 928.0
+offset_top = 64.0
+offset_right = 930.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV15" type="ColorRect" parent="World/TileGrid" unique_id=2025926205]
+offset_left = 992.0
+offset_top = 64.0
+offset_right = 994.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV16" type="ColorRect" parent="World/TileGrid" unique_id=13020229]
+offset_left = 1056.0
+offset_top = 64.0
+offset_right = 1058.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV17" type="ColorRect" parent="World/TileGrid" unique_id=847983132]
+offset_left = 1120.0
+offset_top = 64.0
+offset_right = 1122.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV18" type="ColorRect" parent="World/TileGrid" unique_id=1150132326]
+offset_left = 1184.0
+offset_top = 64.0
+offset_right = 1186.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridV19" type="ColorRect" parent="World/TileGrid" unique_id=166623520]
+offset_left = 1248.0
+offset_top = 64.0
+offset_right = 1250.0
+offset_bottom = 672.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridH00" type="ColorRect" parent="World/TileGrid" unique_id=189525051]
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 1248.0
+offset_bottom = 66.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridH01" type="ColorRect" parent="World/TileGrid" unique_id=487562219]
+offset_left = 32.0
+offset_top = 128.0
+offset_right = 1248.0
+offset_bottom = 130.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridH02" type="ColorRect" parent="World/TileGrid" unique_id=1757135585]
+offset_left = 32.0
+offset_top = 192.0
+offset_right = 1248.0
+offset_bottom = 194.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridH03" type="ColorRect" parent="World/TileGrid" unique_id=234147779]
+offset_left = 32.0
+offset_top = 256.0
+offset_right = 1248.0
+offset_bottom = 258.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridH04" type="ColorRect" parent="World/TileGrid" unique_id=270308346]
+offset_left = 32.0
+offset_top = 320.0
+offset_right = 1248.0
+offset_bottom = 322.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridH05" type="ColorRect" parent="World/TileGrid" unique_id=147967203]
+offset_left = 32.0
+offset_top = 384.0
+offset_right = 1248.0
+offset_bottom = 386.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridH06" type="ColorRect" parent="World/TileGrid" unique_id=818600016]
+offset_left = 32.0
+offset_top = 448.0
+offset_right = 1248.0
+offset_bottom = 450.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridH07" type="ColorRect" parent="World/TileGrid" unique_id=1213223588]
+offset_left = 32.0
+offset_top = 512.0
+offset_right = 1248.0
+offset_bottom = 514.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridH08" type="ColorRect" parent="World/TileGrid" unique_id=177451346]
+offset_left = 32.0
+offset_top = 576.0
+offset_right = 1248.0
+offset_bottom = 578.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridH09" type="ColorRect" parent="World/TileGrid" unique_id=1715824339]
+offset_left = 32.0
+offset_top = 640.0
+offset_right = 1248.0
+offset_bottom = 642.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="GridH10" type="ColorRect" parent="World/TileGrid" unique_id=362897435]
+offset_left = 32.0
+offset_top = 672.0
+offset_right = 1248.0
+offset_bottom = 674.0
+color = Color(0.58, 0.58, 0.54, 0.45)
+
+[node name="SalesRoom" type="ColorRect" parent="World" unique_id=1756481889]
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 480.0
+offset_bottom = 672.0
+color = Color(0.62, 0.7, 0.66, 0)
+
+[node name="Kitchen" type="ColorRect" parent="World" unique_id=354926701]
+offset_left = 480.0
+offset_top = 64.0
+offset_right = 960.0
+offset_bottom = 672.0
+color = Color(0.68, 0.66, 0.6, 0)
+
+[node name="Warehouse" type="ColorRect" parent="World" unique_id=116939510]
+offset_left = 960.0
+offset_top = 64.0
+offset_right = 1248.0
+offset_bottom = 672.0
+color = Color(0.58, 0.64, 0.72, 0)
+
+[node name="ZoneDividers" type="Node2D" parent="World" unique_id=175571851]
+
+[node name="OuterWallTop" type="ColorRect" parent="World/ZoneDividers" unique_id=1538034206]
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 1248.0
+offset_bottom = 72.0
+color = Color(0.16, 0.16, 0.16, 1)
+
+[node name="OuterWallBottom" type="ColorRect" parent="World/ZoneDividers" unique_id=1750866731]
+offset_left = 32.0
+offset_top = 664.0
+offset_right = 1248.0
+offset_bottom = 672.0
+color = Color(0.16, 0.16, 0.16, 1)
+
+[node name="OuterWallLeft" type="ColorRect" parent="World/ZoneDividers" unique_id=1859661336]
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 40.0
+offset_bottom = 672.0
+color = Color(0.16, 0.16, 0.16, 1)
+
+[node name="OuterWallRight" type="ColorRect" parent="World/ZoneDividers" unique_id=2113738263]
+offset_left = 1240.0
+offset_top = 64.0
+offset_right = 1248.0
+offset_bottom = 672.0
+color = Color(0.16, 0.16, 0.16, 1)
+
+[node name="SalesKitchenDivider" type="ColorRect" parent="World/ZoneDividers" unique_id=1317376245]
+offset_left = 476.0
+offset_top = 64.0
+offset_right = 484.0
+offset_bottom = 672.0
+color = Color(0.16, 0.16, 0.16, 1)
+
+[node name="KitchenWarehouseDivider" type="ColorRect" parent="World/ZoneDividers" unique_id=1696649922]
+offset_left = 956.0
+offset_top = 64.0
+offset_right = 964.0
+offset_bottom = 672.0
+color = Color(0.16, 0.16, 0.16, 1)
+
+[node name="ServiceDoorSalesKitchen" type="ColorRect" parent="World/ZoneDividers" unique_id=890693556]
+offset_left = 476.0
+offset_top = 328.0
+offset_right = 484.0
+offset_bottom = 448.0
+color = Color(0.78, 0.78, 0.74, 1)
+
+[node name="ServiceDoorKitchenWarehouse" type="ColorRect" parent="World/ZoneDividers" unique_id=1705567339]
+offset_left = 956.0
+offset_top = 224.0
+offset_right = 964.0
+offset_bottom = 352.0
+color = Color(0.78, 0.78, 0.74, 1)
+
+[node name="ZoneLabels" type="Node2D" parent="World" unique_id=4516041]
+
+[node name="SalesRoomLabel" type="Label" parent="World/ZoneLabels" unique_id=853375544]
+offset_left = 56.0
+offset_top = 82.0
+offset_right = 260.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0.08, 0.1, 0.09, 1)
+theme_override_font_sizes/font_size = 24
+text = "SALES ROOM"
+
+[node name="KitchenLabel" type="Label" parent="World/ZoneLabels" unique_id=269571872]
+offset_left = 504.0
+offset_top = 82.0
+offset_right = 690.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0.1, 0.1, 0.09, 1)
+theme_override_font_sizes/font_size = 24
+text = "KITCHEN"
+
+[node name="WarehouseLabel" type="Label" parent="World/ZoneLabels" unique_id=560224806]
+offset_left = 984.0
+offset_top = 82.0
+offset_right = 1198.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0.08, 0.09, 0.11, 1)
+theme_override_font_sizes/font_size = 24
+text = "WAREHOUSE"
+
+[node name="SalesRoomFixtures" type="Node2D" parent="World" unique_id=807122342]
+
+[node name="CashierStand" type="ColorRect" parent="World/SalesRoomFixtures" unique_id=972077285]
+offset_left = 225.0
+offset_top = 297.0
+offset_right = 288.0
+offset_bottom = 318.0
+color = Color(0.3, 0.31, 0.28, 1)
+
+[node name="CashierStandLabel" type="Label" parent="World/SalesRoomFixtures" unique_id=906826136]
+visible = false
+offset_left = 221.0
+offset_top = 277.0
+offset_right = 300.0
+offset_bottom = 320.0
+theme_override_colors/font_color = Color(0.93, 0.93, 0.88, 1)
+theme_override_font_sizes/font_size = 14
+text = "CASHIER
+STAND"
+horizontal_alignment = 1
+
+[node name="DisplayShelf" type="ColorRect" parent="World/SalesRoomFixtures" unique_id=1645934441]
+offset_left = 65.0
+offset_top = 297.0
+offset_right = 225.0
+offset_bottom = 318.0
+color = Color(1, 1, 1, 0.02)
+
+[node name="DisplayShelfLabel" type="Label" parent="World/SalesRoomFixtures" unique_id=893009477]
+visible = false
+offset_left = 302.0
+offset_top = 162.0
+offset_right = 434.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(0.95, 0.92, 0.82, 1)
+theme_override_font_sizes/font_size = 14
+text = "SHELF"
+horizontal_alignment = 1
+
+[node name="TableA" type="ColorRect" parent="World/SalesRoomFixtures" unique_id=1604279829]
+offset_left = 96.0
+offset_top = 416.0
+offset_right = 224.0
+offset_bottom = 544.0
+color = Color(1, 1, 1, 0.02)
+
+[node name="TableALabel" type="Label" parent="World/SalesRoomFixtures" unique_id=778848169]
+visible = false
+offset_left = 112.0
+offset_top = 462.0
+offset_right = 208.0
+offset_bottom = 492.0
+theme_override_colors/font_color = Color(0.95, 0.95, 0.88, 1)
+theme_override_font_sizes/font_size = 14
+text = "TABLE"
+horizontal_alignment = 1
+
+[node name="TableB" type="ColorRect" parent="World/SalesRoomFixtures" unique_id=1236299286]
+offset_left = 288.0
+offset_top = 416.0
+offset_right = 416.0
+offset_bottom = 544.0
+color = Color(1, 1, 1, 0.02)
+
+[node name="TableBLabel" type="Label" parent="World/SalesRoomFixtures" unique_id=1243354647]
+visible = false
+offset_left = 304.0
+offset_top = 462.0
+offset_right = 400.0
+offset_bottom = 492.0
+theme_override_colors/font_color = Color(0.95, 0.95, 0.88, 1)
+theme_override_font_sizes/font_size = 14
+text = "TABLE"
+horizontal_alignment = 1
+
+[node name="CustomerPath" type="ColorRect" parent="World/SalesRoomFixtures" unique_id=121332740]
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 448.0
+offset_bottom = 368.0
+color = Color(0.82, 0.8, 0.68, 0.8)
+
+[node name="CustomerPathLabel" type="Label" parent="World/SalesRoomFixtures" unique_id=35121959]
+visible = false
+offset_left = 190.0
+offset_top = 332.0
+offset_right = 330.0
+offset_bottom = 360.0
+theme_override_colors/font_color = Color(0.19, 0.19, 0.15, 1)
+theme_override_font_sizes/font_size = 14
+text = "CUSTOMER PATH"
+horizontal_alignment = 1
+
+[node name="KitchenFixtures" type="Node2D" parent="World" unique_id=779726727]
+
+[node name="PrepCounter" type="ColorRect" parent="World/KitchenFixtures" unique_id=1593358078]
+offset_left = 512.0
+offset_top = 160.0
+offset_right = 736.0
+offset_bottom = 288.0
+color = Color(1, 1, 1, 0.02)
+
+[node name="PrepCounterLabel" type="Label" parent="World/KitchenFixtures" unique_id=144835824]
+visible = false
+offset_left = 556.0
+offset_top = 204.0
+offset_right = 692.0
+offset_bottom = 246.0
+theme_override_colors/font_color = Color(0.94, 0.94, 0.88, 1)
+theme_override_font_sizes/font_size = 14
+text = "PREP
+COUNTER"
+horizontal_alignment = 1
+
+[node name="Oven" type="ColorRect" parent="World/KitchenFixtures" unique_id=1405450760]
+offset_left = 800.0
+offset_top = 128.0
+offset_right = 928.0
+offset_bottom = 288.0
+color = Color(1, 1, 1, 0.02)
+
+[node name="OvenLabel" type="Label" parent="World/KitchenFixtures" unique_id=557914495]
+visible = false
+offset_left = 818.0
+offset_top = 194.0
+offset_right = 910.0
+offset_bottom = 224.0
+theme_override_colors/font_color = Color(0.94, 0.94, 0.88, 1)
+theme_override_font_sizes/font_size = 14
+text = "OVEN"
+horizontal_alignment = 1
+
+[node name="MixerMachine" type="ColorRect" parent="World/KitchenFixtures" unique_id=135937026]
+offset_left = 607.0
+offset_top = 380.0
+offset_right = 735.0
+offset_bottom = 508.0
+color = Color(1, 1, 1, 0.02)
+
+[node name="MixerMachineLabel" type="Label" parent="World/KitchenFixtures" unique_id=1373831546]
+visible = false
+offset_left = 558.0
+offset_top = 428.0
+offset_right = 658.0
+offset_bottom = 470.0
+theme_override_colors/font_color = Color(0.91, 0.94, 0.98, 1)
+theme_override_font_sizes/font_size = 14
+text = "MIXER
+MACHINE"
+horizontal_alignment = 1
+
+[node name="PackingMachine" type="ColorRect" parent="World/KitchenFixtures" unique_id=1567842029]
+offset_left = 736.0
+offset_top = 384.0
+offset_right = 896.0
+offset_bottom = 512.0
+color = Color(1, 1, 1, 0.02)
+
+[node name="PackingMachineLabel" type="Label" parent="World/KitchenFixtures" unique_id=1078390406]
+visible = false
+offset_left = 748.0
+offset_top = 428.0
+offset_right = 884.0
+offset_bottom = 470.0
+theme_override_colors/font_color = Color(0.91, 0.94, 0.98, 1)
+theme_override_font_sizes/font_size = 14
+text = "PACKING
+MACHINE"
+horizontal_alignment = 1
+
+[node name="WorkersArea" type="ColorRect" parent="World/KitchenFixtures" unique_id=1339050850]
+offset_left = 528.0
+offset_top = 278.0
+offset_right = 944.0
+offset_bottom = 374.0
+color = Color(0.5, 0.46, 0.39, 0.85)
+
+[node name="WorkersAreaLabel" type="Label" parent="World/KitchenFixtures" unique_id=1499252618]
+visible = false
+offset_left = 650.0
+offset_top = 574.0
+offset_right = 790.0
+offset_bottom = 606.0
+theme_override_colors/font_color = Color(0.95, 0.93, 0.86, 1)
+theme_override_font_sizes/font_size = 14
+text = "WORKERS AREA"
+horizontal_alignment = 1
+
+[node name="WarehouseFixtures" type="Node2D" parent="World" unique_id=1686760342]
+
+[node name="RackA" type="ColorRect" parent="World/WarehouseFixtures" unique_id=282431508]
+offset_left = 992.0
+offset_top = 144.0
+offset_right = 1056.0
+offset_bottom = 608.0
+color = Color(1, 1, 1, 0.02)
+
+[node name="RackALabel" type="Label" parent="World/WarehouseFixtures" unique_id=712446336]
+visible = false
+offset_left = 1000.0
+offset_top = 342.0
+offset_right = 1048.0
+offset_bottom = 410.0
+theme_override_colors/font_color = Color(0.9, 0.93, 0.98, 1)
+theme_override_font_sizes/font_size = 13
+text = "RACK
+A"
+horizontal_alignment = 1
+
+[node name="RackB" type="ColorRect" parent="World/WarehouseFixtures" unique_id=1414803580]
+offset_left = 1088.0
+offset_top = 144.0
+offset_right = 1152.0
+offset_bottom = 608.0
+color = Color(1, 1, 1, 0.02)
+
+[node name="RackBLabel" type="Label" parent="World/WarehouseFixtures" unique_id=1331140152]
+visible = false
+offset_left = 1096.0
+offset_top = 342.0
+offset_right = 1144.0
+offset_bottom = 410.0
+theme_override_colors/font_color = Color(0.9, 0.93, 0.98, 1)
+theme_override_font_sizes/font_size = 13
+text = "RACK
+B"
+horizontal_alignment = 1
+
+[node name="ReceivingZone" type="ColorRect" parent="World/WarehouseFixtures" unique_id=878138554]
+offset_left = 1184.0
+offset_top = 448.0
+offset_right = 1232.0
+offset_bottom = 608.0
+color = Color(1, 1, 1, 0.02)
+
+[node name="ReceivingZoneLabel" type="Label" parent="World/WarehouseFixtures" unique_id=1848340505]
+visible = false
+offset_left = 1186.0
+offset_top = 492.0
+offset_right = 1230.0
+offset_bottom = 570.0
+theme_override_colors/font_color = Color(0.92, 0.94, 0.98, 1)
+theme_override_font_sizes/font_size = 12
+text = "RECV"
+horizontal_alignment = 1
+
+[node name="RackNoteLabel" type="Label" parent="World/WarehouseFixtures" unique_id=1221692221]
+visible = false
+offset_left = 1000.0
+offset_top = 112.0
+offset_right = 1216.0
+offset_bottom = 138.0
+theme_override_colors/font_color = Color(0.08, 0.09, 0.11, 1)
+theme_override_font_sizes/font_size = 14
+text = "WAREHOUSE RACKS"
+horizontal_alignment = 1
+
+[node name="Player" type="ColorRect" parent="World" unique_id=1574099436]
+offset_left = 214.0
+offset_top = 348.0
+offset_right = 236.0
+offset_bottom = 370.0
+color = Color(0.18, 0.24, 0.32, 1)
+script = ExtResource("3_player")
+
+[node name="PlayerLabel" type="Label" parent="World/Player" unique_id=1441813659]
+visible = false
+layout_mode = 0
+offset_left = -12.0
+offset_top = -24.0
+offset_right = 52.0
+offset_bottom = -2.0
+theme_override_colors/font_color = Color(0.04, 0.05, 0.07, 1)
+theme_override_font_sizes/font_size = 12
+text = "PLAYER"
+horizontal_alignment = 1
+
+[node name="PlacedObjects" type="Node2D" parent="World" unique_id=1905089806]
+
+[node name="PlacementPreview" type="ColorRect" parent="World" unique_id=2039367676]
+visible = false
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 160.0
+offset_bottom = 160.0
+color = Color(0.2, 0.8, 0.35, 0.35)
+
+[node name="HUD" parent="." unique_id=1176609261 instance=ExtResource("2_hud")]
+
+[node name="InteractionPopup" type="PanelContainer" parent="." unique_id=419448355]
+visible = false
+offset_left = 430.0
+offset_top = 160.0
+offset_right = 850.0
+offset_bottom = 420.0
+
+[node name="Margin" type="MarginContainer" parent="InteractionPopup" unique_id=229277956]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="Stack" type="VBoxContainer" parent="InteractionPopup/Margin" unique_id=946429589]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="InteractionPopup/Margin/Stack" unique_id=508732821]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Interact"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="InteractionPopup/Margin/Stack" unique_id=1889057951]
+custom_minimum_size = Vector2(360, 110)
+layout_mode = 2
+text = "Object status."
+
+[node name="CleanButton" type="Button" parent="InteractionPopup/Margin/Stack" unique_id=1054489406]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Move Plates To Trash + Wipe"
+
+[node name="CloseButton" type="Button" parent="InteractionPopup/Margin/Stack" unique_id=635462286]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Close"

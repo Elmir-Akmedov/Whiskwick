@@ -5,7 +5,7 @@ extends Node
 # Tracks daily stats for the end-of-day summary.
 # ─────────────────────────────────────────────────────────────────────────────
 
-const CUSTOMER_SCENE: PackedScene = preload("res://scenes/Customer.tscn")
+const CUSTOMER_SCENE: PackedScene = preload("res://scenes/gameplay/Customer.tscn")
 
 @export var max_customers_at_once: int   = 3
 @export var spawn_interval:        float = 15.0

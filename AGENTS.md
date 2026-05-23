@@ -7,9 +7,11 @@
 - Keep diffs minimal. Patch only the exact files and sections needed for the current task.
 - Preserve existing architecture boundaries:
   - `scripts/autoload/`: global state/services only.
+  - `scripts/gameplay/`: main shop-floor scene scripts, player controls, and world-grid presentation.
   - `scripts/components/`: entity-level behavior.
   - `scripts/systems/`: domain logic that coordinates multiple components/services.
   - `scripts/data/`: typed data resources.
+  - `scripts/ui/`: HUD, navigation helpers, and screen controllers.
 
 ## Data And Validation
 
@@ -26,7 +28,23 @@
 
 ## Current Plan Baseline
 
-- Continue the roadmap in `roadmap.md`.
+- Continue the roadmap in `docs/planning/roadmap.md`.
 - Keep design prompts centralized in `docs/DESIGN_AGENT_PROMPTS.md`.
 - Use `docs/CHARACTER_DESIGN_BRIEF.md` and `docs/MACHINE_AND_ITEM_DESIGN_BRIEF.md` as style constraints for generated assets.
 - Use `docs/ANIMATION_AGENT_PROMPTS.md` for sprite-sheet and motion generation prompts.
+
+## Project Structure
+
+- Gameplay scenes live in `scenes/gameplay/`.
+- Menu, market, upgrade, shop-floor test, and summary scenes live in `scenes/screens/`.
+- Shared UI scene fragments live in `scenes/ui/`.
+- Loose hand-authored pixel art lives in `assets/art/pixel/`.
+- Generated sheets and batch manifests stay in `assets/art/generated/`.
+- Planning docs live in `docs/planning/`; production prompts and briefs stay under `docs/`.
+- AI skill/source packages live in `docs/ai_skills/source_packages/`.
+- Art and generation utilities live in `tools/`.
+
+## Morph MCP Workflow
+
+- Use Morph `edit_file` over string replacement or full-file writes when the tool is available.
+- Use `warpgrep_codebase_search` for broad semantic exploration before changing unfamiliar systems.

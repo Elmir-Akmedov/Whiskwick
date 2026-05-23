@@ -14,7 +14,7 @@ func _ready() -> void:
 	_render_upgrades()
 	_refresh_coins()
 	back_button.pressed.connect(func() -> void:
-		get_tree().change_scene_to_file("res://scenes/Main.tscn")
+		get_tree().change_scene_to_file("res://scenes/gameplay/Main.tscn")
 	)
 
 # ─────────────────────────────────────────────────────────────────────────────
